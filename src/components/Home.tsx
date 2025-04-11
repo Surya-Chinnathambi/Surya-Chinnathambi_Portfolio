@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Github, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Tilt from 'react-parallax-tilt';
+import profileImage from '../aset/profileimage.jpg';
 
 const highlights = [
   "Network Security Specialist",
@@ -144,8 +145,7 @@ export function Home() {
                   transition={{ type: "spring", stiffness: 260, damping: 20 }}
                   className="relative rounded-2xl overflow-hidden bg-gradient-to-r from-blue-500 to-purple-500 p-1"
                 >
-                  <img
-                    src="/aset/profileimage.jpg"
+                  <img src={profileImage}
                     alt="Profile"
                     className="w-full aspect-square object-cover rounded-xl"
                   />
