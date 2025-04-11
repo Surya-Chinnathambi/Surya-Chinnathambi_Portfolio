@@ -1,8 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FileText, ExternalLink } from 'lucide-react';
+
 import aiessentials from '../aset/aiessentials.pdf';
+import coursera from '../aset/coursera.pdf';
+import eccouncil from '../aset/eccouncil.pdf';
 import cisco from '../aset/cisco.pdf';
+import dli from '../aset/dli.pdf';
+import nano from '../aset/nano.pdf';
 
 const container = {
   hidden: { opacity: 0 },
@@ -39,37 +44,37 @@ const certificates = [
   {
     name: "Google AI Essentials",
     issuer: "Coursera",
-   <li><a href={aiessentials} target="_blank" rel="noopener noreferrer">AI Essentials</a></li>,
+    pdfUrl: aiessentials,
     date: "2023"
   },
   {
     name: "Foundations of Cybersecurity",
     issuer: "Coursera",
-    pdfUrl:"src/aset/coursera.pdf",
+    pdfUrl: coursera,
     date: "2023"
   },
   {
     name: "Ethical Hacking Essentials",
     issuer: "EC-Council",
-    pdfUrl: "src/aset/eccouncil.pdf",
+    pdfUrl: eccouncil,
     date: "2023"
   },
   {
     name: "Introduction to Cybersecurity",
     issuer: "Cisco Networking Academy",
-    pdfUrl: "src/aset/cisco.pdf",
+    pdfUrl: cisco,
     date: "2023"
   },
   {
     name: "Fundamentals of Deep Learning",
     issuer: "NVIDIA DLI",
-    pdfUrl: "src/aset/dli.pdf",
+    pdfUrl: dli,
     date: "2023"
   },
   {
     name: "Getting Started with AI on Jetson Nano",
     issuer: "NVIDIA DLI",
-    pdfUrl: "src/aset/nano.pdf",
+    pdfUrl: nano,
     date: "2023"
   }
 ];
@@ -115,7 +120,7 @@ export function About() {
               <div className="space-y-2">
                 <p><span className="font-medium">Security & Networking:</span> Kali Linux, Nmap, Metasploit, Wireshark, Burp Suite, TCP/IP, Firewalls</p>
                 <p><span className="font-medium">Programming & Scripting:</span> C, Python, JavaScript, Bash</p>
-                <p><span className="font-medium">Backend & DB:</span> PHP,MongoDB, MySQL</p>
+                <p><span className="font-medium">Backend & DB:</span> PHP, MongoDB, MySQL</p>
                 <p><span className="font-medium">Frontend:</span> HTML, CSS, JavaScript</p>
                 <p><span className="font-medium">Others:</span> Git, GitHub, Firebase</p>
               </div>
