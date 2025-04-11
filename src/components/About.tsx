@@ -37,37 +37,37 @@ const certificates = [
   {
     name: "Google AI Essentials",
     issuer: "Coursera",
-    pdfUrl: "https://example.com/path-to-your-certificate.pdf",
+    pdfUrl: "src\aset\aiessentials.pdf",
     date: "2023"
   },
   {
     name: "Foundations of Cybersecurity",
     issuer: "Coursera",
-    pdfUrl: "https://example.com/path-to-your-certificate.pdf",
+    pdfUrl: "src\aset\coursera.pdf",
     date: "2023"
   },
   {
     name: "Ethical Hacking Essentials",
     issuer: "EC-Council",
-    pdfUrl: "https://example.com/path-to-your-certificate.pdf",
+    pdfUrl: "src\aset\eccouncil.pdf",
     date: "2023"
   },
   {
     name: "Introduction to Cybersecurity",
     issuer: "Cisco Networking Academy",
-    pdfUrl: "https://example.com/path-to-your-certificate.pdf",
+    pdfUrl: "src\aset\cisco.pdf",
     date: "2023"
   },
   {
     name: "Fundamentals of Deep Learning",
     issuer: "NVIDIA DLI",
-    pdfUrl: "https://example.com/path-to-your-certificate.pdf",
+    pdfUrl: "src\aset\dli.pdf",
     date: "2023"
   },
   {
     name: "Getting Started with AI on Jetson Nano",
     issuer: "NVIDIA DLI",
-    pdfUrl: "https://example.com/path-to-your-certificate.pdf",
+    pdfUrl: "src\aset\nano.pdf",
     date: "2023"
   }
 ];
@@ -112,10 +112,10 @@ export function About() {
               <h3 className="text-xl font-semibold mb-4">Skills</h3>
               <div className="space-y-2">
                 <p><span className="font-medium">Security & Networking:</span> Kali Linux, Nmap, Metasploit, Wireshark, Burp Suite, TCP/IP, Firewalls</p>
-                <p><span className="font-medium">Programming & Scripting:</span> C, Java, JavaScript, Bash</p>
-                <p><span className="font-medium">Backend & DB:</span> Java Spring Boot, MySQL, Hibernate</p>
-                <p><span className="font-medium">Frontend:</span> HTML, CSS, JavaScript, React, Tailwind CSS</p>
-                <p><span className="font-medium">Others:</span> Git, GitHub, Firebase, Vercel</p>
+                <p><span className="font-medium">Programming & Scripting:</span> C, Python, JavaScript, Bash</p>
+                <p><span className="font-medium">Backend & DB:</span> PHP,MongoDB, MySQL</p>
+                <p><span className="font-medium">Frontend:</span> HTML, CSS, JavaScript</p>
+                <p><span className="font-medium">Others:</span> Git, GitHub, Firebase</p>
               </div>
             </motion.div>
 
