@@ -37,37 +37,37 @@ const certificates = [
   {
     name: "Google AI Essentials",
     issuer: "Coursera",
-    pdfUrl: "src\aset\aiessentials.pdf",
+    pdfUrl: "src/aset/aiessentials.pdf",
     date: "2023"
   },
   {
     name: "Foundations of Cybersecurity",
     issuer: "Coursera",
-    pdfUrl: "src\aset\coursera.pdf",
+    pdfUrl:"src/aset/coursera.pdf",
     date: "2023"
   },
   {
     name: "Ethical Hacking Essentials",
     issuer: "EC-Council",
-    pdfUrl: "src\aset\eccouncil.pdf",
+    pdfUrl: "src/aset/eccouncil.pdf",
     date: "2023"
   },
   {
     name: "Introduction to Cybersecurity",
     issuer: "Cisco Networking Academy",
-    pdfUrl: "src\aset\cisco.pdf",
+    pdfUrl: "src/aset/cisco.pdf",
     date: "2023"
   },
   {
     name: "Fundamentals of Deep Learning",
     issuer: "NVIDIA DLI",
-    pdfUrl: "src\aset\dli.pdf",
+    pdfUrl: "src/aset/dli.pdf",
     date: "2023"
   },
   {
     name: "Getting Started with AI on Jetson Nano",
     issuer: "NVIDIA DLI",
-    pdfUrl: "src\aset\nano.pdf",
+    pdfUrl: "src/aset/nano.pdf",
     date: "2023"
   }
 ];
