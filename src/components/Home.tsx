@@ -7,7 +7,7 @@ const highlights = [
   "Network Security Specialist",
   "Penetration Testing Expert",
   "Cybersecurity Enthusiast",
-  "Full Stack Developer"
+  "Web Developer"
 ];
 
 export function Home() {
@@ -145,7 +145,7 @@ export function Home() {
                   className="relative rounded-2xl overflow-hidden bg-gradient-to-r from-blue-500 to-purple-500 p-1"
                 >
                   <img
-                    src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=400&h=400&auto=format&fit=crop&q=80"
+                    src="project\dist\assets\20250224_075405.jpg"
                     alt="Profile"
                     className="w-full aspect-square object-cover rounded-xl"
                   />
