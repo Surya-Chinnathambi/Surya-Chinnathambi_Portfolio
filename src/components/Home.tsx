@@ -112,7 +112,7 @@ export function Home() {
                   key={index}
                   whileHover={{ scale: 1.2, rotate: 5 }}
                   href={social.href}
-                  className={${social.color} transition-colors}
+                  className={`${social.color} transition-colors`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -122,7 +122,7 @@ export function Home() {
             </motion.div>
           </motion.div>
 
-          {/* Static Profile Image Section */}
+          {/* Profile Image Section */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -155,7 +155,7 @@ export function Home() {
           </motion.div>
         </div>
 
-        {/* NEW FEATURED SKILLS SECTION */}
+        {/* Featured Skills Section */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -173,7 +173,7 @@ export function Home() {
               <motion.div
                 key={index}
                 whileHover={{ scale: 1.05 }}
-                className={p-6 rounded-xl bg-gradient-to-br ${skill.glow} text-white text-center shadow-lg transition-transform duration-300}
+                className={`p-6 rounded-xl bg-gradient-to-br ${skill.glow} text-white text-center shadow-lg transition-transform duration-300`}
               >
                 <h3 className="text-xl font-semibold">{skill.title}</h3>
               </motion.div>
