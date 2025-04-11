@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FileText, ExternalLink } from 'lucide-react';
+import aiessentials from '../aset/aiessentials.pdf';
+import cisco from '../aset/cisco.pdf';
 
 const container = {
   hidden: { opacity: 0 },
@@ -37,7 +39,7 @@ const certificates = [
   {
     name: "Google AI Essentials",
     issuer: "Coursera",
-    pdfUrl: "src/aset/aiessentials.pdf",
+   <li><a href={aiessentials} target="_blank" rel="noopener noreferrer">AI Essentials</a></li>,
     date: "2023"
   },
   {
