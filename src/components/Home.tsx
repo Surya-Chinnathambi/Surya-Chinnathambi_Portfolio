@@ -145,7 +145,7 @@ export function Home() {
                   className="relative rounded-2xl overflow-hidden bg-gradient-to-r from-blue-500 to-purple-500 p-1"
                 >
                   <img
-                    src="src\aset\profileimage.jpg"
+                    src="src/aset/profileimage.jpg"
                     alt="Profile"
                     className="w-full aspect-square object-cover rounded-xl"
                   />
