@@ -72,7 +72,7 @@ export function Home() {
               className="flex items-center gap-2 text-gray-400 mt-6"
             >
               <MapPin size={20} />
-              <span>Coimbatore, Tamil Nadu</span>
+              <span>Kallakurichi, Tamil Nadu</span>
             </motion.div>
 
             <motion.div
@@ -106,7 +106,7 @@ export function Home() {
               {[
                 { icon: Github, href: "https://github.com/Suryzz", color: "hover:text-purple-400" },
                 { icon: Linkedin, href: "http://www.linkedin.com/in/surya-c-a4627725a/", color: "hover:text-blue-400" },
-                { icon: Mail, href: "mailto:abishek20.vrs@gmail.com", color: "hover:text-green-400" }
+                { icon: Mail, href: "mailto:suryag.chinnathambi@gmail.com", color: "hover:text-green-400" }
               ].map((social, index) => (
                 <motion.a
                   key={index}
@@ -145,7 +145,7 @@ export function Home() {
                   className="relative rounded-2xl overflow-hidden bg-gradient-to-r from-blue-500 to-purple-500 p-1"
                 >
                   <img
-                    src="project\dist\assets\20250224_075405.jpg"
+                    src="src\aset\profileimage.jpg"
                     alt="Profile"
                     className="w-full aspect-square object-cover rounded-xl"
                   />
