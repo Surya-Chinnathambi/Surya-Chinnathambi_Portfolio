@@ -22,9 +22,8 @@ export function Home() {
 
   return (
     <div className="container mx-auto px-4 py-20">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Left Section */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -39,7 +38,6 @@ export function Home() {
             >
               Welcome, I'm
             </motion.h2>
-
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -48,7 +46,6 @@ export function Home() {
             >
               Surya C
             </motion.h1>
-
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -84,11 +81,17 @@ export function Home() {
               transition={{ delay: 0.6 }}
               className="mt-8 space-y-4"
             >
-              <motion.div whileHover={{ x: 10 }} className="flex items-center gap-3 text-gray-400">
+              <motion.div
+                whileHover={{ x: 10 }}
+                className="flex items-center gap-3 text-gray-400"
+              >
                 <Phone size={20} />
                 <span>(+91) 8870752656</span>
               </motion.div>
-              <motion.div whileHover={{ x: 10 }} className="flex items-center gap-3 text-gray-400">
+              <motion.div
+                whileHover={{ x: 10 }}
+                className="flex items-center gap-3 text-gray-400"
+              >
                 <Mail size={20} />
                 <span>suryag.chinnathambi@gmail.com</span>
               </motion.div>
@@ -109,7 +112,7 @@ export function Home() {
                   key={index}
                   whileHover={{ scale: 1.2, rotate: 5 }}
                   href={social.href}
-                  className={`${social.color} transition-colors`}
+                  className={${social.color} transition-colors}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -119,12 +122,12 @@ export function Home() {
             </motion.div>
           </motion.div>
 
-          {/* Right Profile Image */}
+          {/* Static Profile Image Section */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="flex justify-center"
+            className="relative"
           >
             <Tilt
               tiltMaxAngleX={10}
@@ -132,20 +135,27 @@ export function Home() {
               perspective={1000}
               scale={1.05}
               transitionSpeed={2000}
-              className="w-64 h-64"
+              className="relative"
             >
-              <div className="rounded-2xl overflow-hidden bg-gradient-to-r from-blue-500 to-purple-500 p-1 shadow-lg">
-                <img
-                  src="/aset/profileimage.jpg" // Make sure the image is in public/assets
-                  alt="Profile"
-                  className="w-full h-full object-cover rounded-xl"
-                />
+              <div className="relative group">
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                  className="relative rounded-2xl overflow-hidden bg-gradient-to-r from-blue-500 to-purple-500 p-1"
+                >
+                  <img
+                    src="/aset/profileimage.jpg"
+                    alt="Profile"
+                    className="w-full aspect-square object-cover rounded-xl"
+                  />
+                </motion.div>
               </div>
             </Tilt>
           </motion.div>
         </div>
 
-        {/* Featured Skills */}
+        {/* NEW FEATURED SKILLS SECTION */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -153,7 +163,7 @@ export function Home() {
           className="mt-20"
         >
           <h2 className="text-2xl font-bold mb-8 text-center">Featured Skills</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:grid-cols-2 lg:grid-cols-4">
             {[
               { title: "Network Security", glow: "from-blue-500 to-cyan-400" },
               { title: "Penetration Testing", glow: "from-purple-500 to-pink-400" },
@@ -163,7 +173,7 @@ export function Home() {
               <motion.div
                 key={index}
                 whileHover={{ scale: 1.05 }}
-                className={`p-6 rounded-xl bg-gradient-to-br ${skill.glow} text-white text-center shadow-lg transition-transform duration-300`}
+                className={p-6 rounded-xl bg-gradient-to-br ${skill.glow} text-white text-center shadow-lg transition-transform duration-300}
               >
                 <h3 className="text-xl font-semibold">{skill.title}</h3>
               </motion.div>
