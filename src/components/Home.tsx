@@ -168,7 +168,7 @@ export function Home() {
               { title: "Network Security", glow: "from-blue-500 to-cyan-400" },
               { title: "Penetration Testing", glow: "from-purple-500 to-pink-400" },
               { title: "Ethical Hacking", glow: "from-green-500 to-emerald-400" },
-              { title: "Full Stack Development", glow: "from-orange-500 to-yellow-400" }
+              { title: "Web Development", glow: "from-orange-500 to-yellow-400" }
             ].map((skill, index) => (
               <motion.div
                 key={index}
