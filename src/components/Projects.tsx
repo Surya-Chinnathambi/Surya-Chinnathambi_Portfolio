@@ -22,31 +22,48 @@ export function Projects() {
   const projects = [
     {
       title: "Digital On-Duty Forms",
-      description: "Developed a secure digital platform for student leave applications with role-based access. Focused on user authentication and access control using PHP and MySQL. Emphasized secure data handling and basic encryption techniques.",
-      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600&h=400&auto=format&fit=crop&q=80",
+      description:
+        "Developed a secure digital platform for student leave applications with role-based access. Focused on user authentication and access control using PHP and MySQL. Emphasized secure data handling and basic encryption techniques.",
+      image:
+        "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600&h=400&auto=format&fit=crop&q=80",
       tags: ["PHP", "MySQL", "Security"],
       link: "https://github.com/Surya-Chinnathambi/odform"
     },
     {
       title: "Vulnerability Assessment on Local Network",
-      description: "Used Nmap to scan devices and ports on a simulated internal network. Employed Metasploit for exploit testing on Metasploitable 2 and Kali Linux VM lab. Analyzed packet traffic using Wireshark to detect suspicious activities.",
-      image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&auto=format&fit=crop&q=80",
+      description:
+        "Used Nmap to scan devices and ports on a simulated internal network. Employed Metasploit for exploit testing on Metasploitable 2 and Kali Linux VM lab. Analyzed packet traffic using Wireshark to detect suspicious activities.",
+      image:
+        "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&auto=format&fit=crop&q=80",
       tags: ["Nmap", "Metasploit", "Wireshark"],
       link: "https://github.com/Surya-Chinnathambi/odform"
     },
     {
       title: "Wild Boar Detection & Sound Alert System",
-      description: "Built a smart system using YOLOv8 and ESP32-CAM for detecting wild boars in farmlands. Integrated sound alerts via ESP32 board and trained ML models for accurate identification and minimal false positives.",
-      image: "https://images.unsplash.com/photo-1581090700227-1e37b190418e?w=600&h=400&auto=format&fit=crop&q=80",
+      description:
+        "Built a smart system using YOLOv8 and ESP32-CAM for detecting wild boars in farmlands. Integrated sound alerts via ESP32 board and trained ML models for accurate identification and minimal false positives.",
+      image:
+        "https://images.unsplash.com/photo-1581090700227-1e37b190418e?w=600&h=400&auto=format&fit=crop&q=80",
       tags: ["YOLOv8", "ESP32", "Machine Learning"],
       link: "https://github.com/Surya-Chinnathambi/odform"
     },
     {
       title: "Indian Sign Language Learning Platform",
-      description: "Created an intuitive web-based platform to help users learn Indian Sign Language. Included gesture recognition, visual examples, quizzes, and progress tracking for better learning outcomes.",
-      image: "https://images.unsplash.com/photo-1584697964403-b49a2918aa08?w=600&h=400&auto=format&fit=crop&q=80",
+      description:
+        "Created an intuitive web-based platform to help users learn Indian Sign Language. Included gesture recognition, visual examples, quizzes, and progress tracking for better learning outcomes.",
+      image:
+        "https://images.unsplash.com/photo-1584697964403-b49a2918aa08?w=600&h=400&auto=format&fit=crop&q=80",
       tags: ["React", "ML", "Accessibility"],
       link: "https://github.com/Surya-Chinnathambi/odform"
+    },
+    {
+      title: "HackToolkit – Web Hacking Toolkit",
+      description:
+        "A centralized platform that provides curated resources and tools for web application penetration testing. Covers recon, fuzzing, XSS, SQLi, and other OWASP Top 10 vulnerabilities, organized for learning and quick use.",
+      image:
+        "https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?w=600&h=400&auto=format&fit=crop&q=80",
+      tags: ["Web Hacking", "OWASP", "Toolkit"],
+      link: "https://hackingtoolsinfo.netlify.app/"
     }
   ];
 
