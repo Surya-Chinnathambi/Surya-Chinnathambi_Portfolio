@@ -5,12 +5,13 @@ import Tilt from 'react-parallax-tilt';
 import profileImage from '../aset/profileimage.jpg'; // Make sure this path is correct
 
 const highlights = [
-  "Penetration Tester",
+  "Your Highlight Here", // Keep this or update with your actual highlight
+  "Penetration Testing Expert",
   "Cybersecurity Enthusiast",
   "Web Developer"
 ];
 
-// New component for the floating shapes in the background
+// Component for the floating shapes in the background
 const FloatingShape = ({ top, left, size, delay, duration }) => {
   return (
     <motion.div
@@ -20,12 +21,12 @@ const FloatingShape = ({ top, left, size, delay, duration }) => {
         height: size,
         top,
         left,
-        background: 'linear-gradient(45deg, #3b82f6, #8b5cf6)', // Blue-purple gradient
+        background: 'linear-gradient(45deg, #3b82f6, #8b5cf6)',
       }}
       initial={{ y: 0, scale: 0.8 }}
       animate={{
-        y: [0, 20, 0], // Move up and down
-        scale: [0.8, 1, 0.8], // Scale in and out
+        y: [0, 20, 0],
+        scale: [0.8, 1, 0.8],
       }}
       transition={{
         duration: duration,
@@ -38,31 +39,30 @@ const FloatingShape = ({ top, left, size, delay, duration }) => {
   );
 };
 
-// New component for the sparkle effect
+// Component for the sparkle effect
 const Sparkle = ({ children }) => {
   const [sparkles, setSparkles] = useState([]);
 
   useEffect(() => {
     const addSparkle = () => {
       const id = Date.now();
-      const x = Math.random() * 100; // Percentage of element width
-      const y = Math.random() * 100; // Percentage of element height
-      const size = Math.random() * 8 + 4; // Random size between 4 and 12px
-      const duration = Math.random() * 0.8 + 0.4; // Random duration
-      const delay = Math.random() * 0.5; // Random delay
+      const x = Math.random() * 100;
+      const y = Math.random() * 100;
+      const size = Math.random() * 8 + 4;
+      const duration = Math.random() * 0.8 + 0.4;
+      const delay = Math.random() * 0.5;
 
       setSparkles((prev) => [
         ...prev,
         { id, x, y, size, duration, delay }
       ]);
 
-      // Remove sparkle after its animation
       setTimeout(() => {
         setSparkles((prev) => prev.filter(s => s.id !== id));
       }, (duration + delay) * 1000);
     };
 
-    const interval = setInterval(addSparkle, 500); // Add a new sparkle every 500ms
+    const interval = setInterval(addSparkle, 500);
     return () => clearInterval(interval);
   }, []);
 
@@ -101,11 +101,10 @@ export function Home() {
   }, []);
 
   return (
-    // Added a relative positioning and overflow-hidden for the new background animations
     <div className="relative overflow-hidden min-h-screen bg-gray-900 text-white">
       {/* Animated Gradient Background */}
       <motion.div
-        className="absolute inset-0 z-[-2]" // Lower z-index to be behind everything
+        className="absolute inset-0 z-[-2]"
         animate={{
           background: [
             'linear-gradient(135deg, #020617 0%, #111827 50%, #1e293b 100%)',
@@ -122,7 +121,7 @@ export function Home() {
       />
 
       {/* Floating Shapes Layer */}
-      <div className="absolute inset-0 z-[-1]"> {/* Slightly higher z-index than background */}
+      <div className="absolute inset-0 z-[-1]">
         <FloatingShape top="10%" left="5%" size={200} delay={0} duration={10} />
         <FloatingShape top="50%" left="20%" size={150} delay={2} duration={12} />
         <FloatingShape top="30%" left="80%" size={250} delay={4} duration={15} />
@@ -131,8 +130,8 @@ export function Home() {
         <FloatingShape top="70%" left="10%" size={220} delay={5} duration={13} />
       </div>
 
-      <div className="container mx-auto px-4 py-20 flex items-center justify-center relative z-0"> {/* Ensure content is above animations */}
-        <div className="max-w-4xl mx-auto backdrop-blur-sm bg-black bg-opacity-30 p-8 rounded-lg shadow-lg"> {/* Added a semi-transparent background to the content area */}
+      <div className="container mx-auto px-4 py-20 flex items-center justify-center relative z-0">
+        <div className="max-w-4xl mx-auto backdrop-blur-sm bg-black bg-opacity-30 p-8 rounded-lg shadow-lg">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -148,7 +147,7 @@ export function Home() {
               >
                 Welcome, I'm
               </motion.h2>
-              <Sparkle> {/* Wrap the name with Sparkle component */}
+              <Sparkle>
                 <motion.h1
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -193,15 +192,17 @@ export function Home() {
                 transition={{ delay: 0.6 }}
                 className="mt-8 space-y-4"
               >
+                {/* Enhanced hover */}
                 <motion.div
-                  whileHover={{ x: 10, scale: 1.05 }} {/* Enhanced hover */}
+                  whileHover={{ x: 10, scale: 1.05 }}
                   className="flex items-center gap-3 text-gray-400"
                 >
                   <Phone size={20} />
                   <span>(+91) 8870752656</span>
                 </motion.div>
+                {/* Enhanced hover */}
                 <motion.div
-                  whileHover={{ x: 10, scale: 1.05 }} {/* Enhanced hover */}
+                  whileHover={{ x: 10, scale: 1.05 }}
                   className="flex items-center gap-3 text-gray-400"
                 >
                   <Mail size={20} />
@@ -216,19 +217,21 @@ export function Home() {
                 className="flex gap-6 mt-8"
               >
                 {[
-                  { icon: Github, href: "https://github.com/Surya-Chinnathambi", color: "hover:text-purple-400" },
+                  { icon: Github, href: "https://github.com/Suryzz", color: "hover:text-purple-400" },
                   { icon: Linkedin, href: "http://www.linkedin.com/in/surya-c-a4627725a/", color: "hover:text-blue-400" },
                   { icon: Mail, href: "mailto:suryag.chinnathambi@gmail.com", color: "hover:text-green-400" }
                 ].map((social, index) => (
+                  // Enhanced hover
                   <motion.a
                     key={index}
-                    whileHover={{ scale: 1.3, rotate: 10, transition: { duration: 0.2 } }} {/* Enhanced hover */}
+                    whileHover={{ scale: 1.3, rotate: 10, transition: { duration: 0.2 } }}
                     href={social.href}
                     className={`${social.color} transition-colors`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <social.icon size={28} /> {/* Slightly larger icons */}
+                    {/* Slightly larger icons */}
+                    <social.icon size={28} />
                   </motion.a>
                 ))}
               </motion.div>
@@ -266,7 +269,7 @@ export function Home() {
             </motion.div>
           </div>
 
-          {/* Featured Skills Section (kept as per request) */}
+          {/* Featured Skills Section */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -276,13 +279,15 @@ export function Home() {
             <h2 className="text-3xl font-bold mb-8 text-center bg-gradient-to-r from-emerald-400 to-teal-500 text-transparent bg-clip-text">Featured Skills</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:grid-cols-2 lg:grid-cols-4">
               {[
+                { title: "Your Skill Here", glow: "from-blue-500 to-cyan-400" }, // Keep this or update with your actual skill
                 { title: "Penetration Testing", glow: "from-purple-500 to-pink-400" },
                 { title: "Ethical Hacking", glow: "from-green-500 to-emerald-400" },
                 { title: "Web Development", glow: "from-orange-500 to-yellow-400" }
               ].map((skill, index) => (
+                // Added shadow on hover
                 <motion.div
                   key={index}
-                  whileHover={{ scale: 1.08, boxShadow: "0 0 20px rgba(74, 222, 128, 0.6)" }} // Added shadow on hover
+                  whileHover={{ scale: 1.08, boxShadow: "0 0 20px rgba(74, 222, 128, 0.6)" }}
                   className={`p-6 rounded-xl bg-gradient-to-br ${skill.glow} text-white text-center shadow-lg transition-all duration-300 transform border border-transparent hover:border-white`}
                 >
                   <h3 className="text-xl font-semibold">{skill.title}</h3>
