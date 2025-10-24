@@ -3,7 +3,7 @@ import { Github, Linkedin, Mail, MapPin, Phone, Code, Shield, Globe } from 'luci
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Import your image
-import profilePic from '../assets/20250224_075405.jpg';
+import profilePic from '..aset/20250224_075405.jpg';
 
 const highlights = [
   "Cybersecurity Enthusiast",
