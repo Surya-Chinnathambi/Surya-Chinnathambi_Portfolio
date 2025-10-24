@@ -13,8 +13,6 @@ interface Particle {
 
 export function ParticleNetwork() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  // Use a ref for the mouse position to avoid re-renders in the animation loop
-  const mouse = useRef({ x: -200, y: -200, radius: 120 });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -24,10 +22,13 @@ export function ParticleNetwork() {
     if (!ctx) return;
 
     let animationFrameId: number;
+    let time = 0; // Time variable for sine wave pulsation
 
     const particles: Particle[] = [];
-    const particleCount = 100; // Increased particle count for a denser network
-    const maxDistance = 120; // Max distance for lines between particles
+    const particleCount = 100;
+    const maxDistance = 120;
+    const returnForce = 0.0005; // Strength of the pull back to origin
+    const damping = 0.96; // Friction to slow particles down
 
     const setCanvasSize = () => {
       canvas.width = window.innerWidth;
@@ -43,8 +44,8 @@ export function ParticleNetwork() {
         particles.push({
           x: x,
           y: y,
-          vx: (Math.random() - 0.5) * 0.8,
-          vy: (Math.random() - 0.5) * 0.8,
+          vx: (Math.random() - 0.5) * 1.5,
+          vy: (Math.random() - 0.5) * 1.5,
           radius: radius,
           originalX: x,
           originalY: y,
@@ -52,48 +53,30 @@ export function ParticleNetwork() {
       }
     };
 
-    const handleMouseMove = (event: MouseEvent) => {
-      mouse.current.x = event.clientX;
-      mouse.current.y = event.clientY;
-    };
-
     const handleResize = () => {
       setCanvasSize();
-      initParticles(); // Re-initialize particles on resize for new dimensions
+      initParticles();
     };
 
     const animate = () => {
+      time += 0.01; // Increment time for pulsing effect
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       particles.forEach((particle) => {
-        // --- Mouse Interaction ---
-        const dxMouse = particle.x - mouse.current.x;
-        const dyMouse = particle.y - mouse.current.y;
-        const distanceMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
+        // --- Gravitational pull back to original position ---
+        const dxOrigin = particle.originalX - particle.x;
+        const dyOrigin = particle.originalY - particle.y;
+        
+        particle.vx += dxOrigin * returnForce;
+        particle.vy += dyOrigin * returnForce;
 
-        if (distanceMouse < mouse.current.radius) {
-          // Push particles away from the mouse
-          const forceDirectionX = dxMouse / distanceMouse;
-          const forceDirectionY = dyMouse / distanceMouse;
-          const force = (mouse.current.radius - distanceMouse) / mouse.current.radius;
-          const directionX = forceDirectionX * force * 2; // Increased push force
-          const directionY = forceDirectionY * force * 2;
-          
-          particle.vx += directionX;
-          particle.vy += directionY;
-        }
-
-        // Apply friction/damping to slow particles down
-        particle.vx *= 0.96;
-        particle.vy *= 0.96;
+        // Apply friction/damping
+        particle.vx *= damping;
+        particle.vy *= damping;
 
         // Update particle position
         particle.x += particle.vx;
         particle.y += particle.vy;
-
-        // Bounce off edges
-        if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
-        if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
         
         // Draw particle with a glow
         ctx.beginPath();
@@ -107,6 +90,8 @@ export function ParticleNetwork() {
 
       // --- Draw Connections ---
       ctx.lineWidth = 1;
+      const pulse = (Math.sin(time) + 1) / 2; // Create a value that oscillates between 0 and 1
+
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const p1 = particles[i];
@@ -116,8 +101,8 @@ export function ParticleNetwork() {
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < maxDistance) {
-            const opacity = 1 - distance / maxDistance;
-            ctx.strokeStyle = `rgba(236, 72, 153, ${opacity * 0.6})`;
+            const opacity = (1 - distance / maxDistance) * (0.4 + pulse * 0.4); // Pulsating opacity
+            ctx.strokeStyle = `rgba(236, 72, 153, ${opacity})`;
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
@@ -134,11 +119,9 @@ export function ParticleNetwork() {
     initParticles();
     animate();
     
-    window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(animationFrameId);
     };
@@ -147,8 +130,8 @@ export function ParticleNetwork() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-[-1]" // Set z-index to -1 to be behind all content
-      style={{ background: 'radial-gradient(ellipse at center, #1e293b 0%, #0f172a 100%)' }} // Added a subtle gradient background
+      className="fixed inset-0 pointer-events-none z-[-1]"
+      style={{ background: 'radial-gradient(ellipse at center, #1e293b 0%, #0f172a 100%)' }}
     />
   );
 }
