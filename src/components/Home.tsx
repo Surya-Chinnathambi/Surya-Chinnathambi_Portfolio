@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Github, Linkedin, Mail, MapPin, Phone, Sparkles } from 'lucide-react';
+import { Github, Linkedin, Mail, MapPin, Phone, Code, Shield, Globe } from 'lucide-react'; // Added new icons
 import { motion, AnimatePresence } from 'framer-motion';
+
+// Import your image
+import profilePic from './assets/20250224_075405.jpg'; // Adjust the path as necessary
 
 const highlights = [
   "Cybersecurity Enthusiast",
-  "Penetration Testing Expert",
+  "Penetration Tester",
   "Web Developer",
   "Ethical Hacker"
 ];
@@ -200,7 +203,12 @@ export function Home() {
               >
                 <div className="w-full aspect-square bg-gradient-to-br from-purple-500 via-pink-500 to-red-500 p-1 rounded-2xl">
                   <div className="w-full h-full bg-gray-800 rounded-xl flex items-center justify-center">
-                    <Sparkles size={100} className="text-gray-600" />
+                    {/* Your Profile Picture */}
+                    <img
+                      src={profilePic}
+                      alt="Surya C Profile"
+                      className="w-full h-full object-cover rounded-xl"
+                    />
                   </div>
                 </div>
               </motion.div>
@@ -217,12 +225,11 @@ export function Home() {
             <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-emerald-400 to-cyan-500 text-transparent bg-clip-text">
               Featured Skills
             </h2>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"> {/* Adjusted grid for better spacing */}
               {[
-                { title: "Penetration Testing", glow: "from-purple-500 to-pink-500" },
-                { title: "Ethical Hacking", glow: "from-blue-500 to-cyan-500" },
-                { title: "Network Security", glow: "from-green-500 to-emerald-500" },
-                { title: "Web Development", glow: "from-orange-500 to-red-500" }
+                { title: "Penetration Testing", glow: "from-purple-500 to-pink-500", icon: Shield, description: "Identifying vulnerabilities and securing systems." },
+                { title: "Ethical Hacking", glow: "from-blue-500 to-cyan-500", icon: Code, description: "Simulating attacks to find and fix security flaws." },
+                { title: "Web Development", glow: "from-orange-500 to-red-500", icon: Globe, description: "Building responsive and scalable web applications." }
               ].map((skill, index) => (
                 <motion.div
                   key={index}
@@ -230,13 +237,16 @@ export function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1 + index * 0.1 }}
                   whileHover={{ 
-                    scale: 1.1, 
-                    rotate: 5,
-                    boxShadow: "0 20px 40px rgba(168, 85, 247, 0.4)"
+                    scale: 1.05, // Slightly less aggressive scale
+                    rotate: 0, // Removed rotate for a cleaner hover
+                    boxShadow: "0 25px 50px rgba(0, 0, 0, 0.4)", // More pronounced shadow
+                    y: -10 // Lift the card slightly
                   }}
-                  className={`p-8 rounded-2xl bg-gradient-to-br ${skill.glow} text-white text-center shadow-2xl cursor-pointer transform transition-all`}
+                  className={`p-8 rounded-2xl bg-gradient-to-br ${skill.glow} text-white text-center shadow-2xl cursor-pointer transform transition-all duration-300 border border-transparent hover:border-white/20`}
                 >
-                  <h3 className="text-xl font-bold">{skill.title}</h3>
+                  <skill.icon size={48} className="mx-auto mb-4 text-white/80" /> {/* Icon added */}
+                  <h3 className="text-2xl font-bold mb-2">{skill.title}</h3>
+                  <p className="text-lg text-white/70">{skill.description}</p>
                 </motion.div>
               ))}
             </div>
