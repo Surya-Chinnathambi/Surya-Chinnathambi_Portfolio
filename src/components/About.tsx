@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FileText, ExternalLink, Award, Code, Shield, Brain, Briefcase } from 'lucide-react';
+import { FileText, ExternalLink, Award, Code, Shield, Brain, Briefcase, Activity } from 'lucide-react'; // Added Activity icon
 
-// --- Step 1: Import your certificate PDFs ---
+// --- Import your certificate PDFs ---
 import aiEssentialsPdf from '../aset/aiessentials.pdf';
 import courseraCybersecurityPdf from '../aset/coursera.pdf';
 import ecCouncilPdf from '../aset/eccouncil.pdf';
@@ -51,7 +51,6 @@ const experiences = [
   }
 ];
 
-// --- Step 2: Add a 'link' property to each certificate object ---
 const certificates = [
   {
     name: "Google AI Essentials",
@@ -124,8 +123,39 @@ export function About() {
           variants={item} 
           className="bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-2xl p-8 shadow-2xl border border-purple-500/20"
         >
-          {/* ... (Summary, Technologies, Skills, Education sections remain the same) ... */}
+          <motion.p variants={item} className="text-gray-300 mb-8 leading-relaxed text-lg">
+            A passionate and motivated cybersecurity enthusiast with a strong foundation in networking, programming,
+            and security principles. Demonstrated hands-on experience with tools like Kali Linux, Nmap, Metasploit, and
+            Wireshark, alongside a solid understanding of penetration testing, ethical hacking, and network defense
+            mechanisms.
+          </motion.p>
+
           <div className="space-y-10">
+
+            {/* START: New Cybersecurity Engagement Section */}
+            <motion.div variants={item}>
+              <div className="flex items-center gap-3 mb-4">
+                <Activity className="text-cyan-400" size={28} />
+                <h3 className="text-2xl font-semibold">Cybersecurity Engagement</h3>
+              </div>
+              <ul className="space-y-3 text-gray-300 list-disc list-inside bg-[#0f172a] p-5 rounded-lg border border-cyan-500/10">
+                <li>Completed 95+ rooms on TryHackMe to practice real-world cybersecurity labs.</li>
+                <li>Built and tested multiple cybersecurity tools in personal and academic projects.</li>
+                <li>Continuously learning and practicing cybersecurity skills using Capture the Flag (CTF) platforms.</li>
+                <li>
+                  <a 
+                    href="https://tryhackme.com/p/SuryaChinnathambi" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-cyan-400 hover:underline inline-flex items-center gap-1.5 transition-colors"
+                  >
+                    CTF Practice - TryHackMe <ExternalLink size={14} />
+                  </a>
+                </li>
+              </ul>
+            </motion.div>
+            {/* END: New Section */}
+
             {/* Technologies */}
             <motion.div variants={item}>
               <div className="flex items-center gap-3 mb-4">
@@ -149,6 +179,7 @@ export function About() {
               </div>
             </motion.div>
 
+            {/* ... other sections ... */}
             {/* Skills */}
             <motion.div variants={item}>
               <div className="flex items-center gap-3 mb-4">
@@ -227,7 +258,7 @@ export function About() {
               </div>
             </motion.div>
 
-            {/* --- Step 3: Wrap the certificate card with an <a> tag --- */}
+            {/* Certifications */}
             <motion.div variants={item}>
               <div className="flex items-center gap-3 mb-6">
                 <FileText className="text-pink-400" size={28} />
