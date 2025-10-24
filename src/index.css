@@ -34,3 +34,8 @@
 .animate-spin-slower {
   animation: spin-slower 20s linear infinite;
 }
+
+/* Hide the default system cursor */
+body, a, button {
+  cursor: none;
+}
