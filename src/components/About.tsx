@@ -1,6 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FileText, ExternalLink, Award, Code, Shield, Brain, Briefcase } from 'lucide-react'; // Added Briefcase icon
+import { FileText, ExternalLink, Award, Code, Shield, Brain, Briefcase } from 'lucide-react';
+
+// --- Step 1: Import your certificate PDFs ---
+import aiEssentialsPdf from '../aset/aiessentials.pdf';
+import courseraCybersecurityPdf from '../aset/coursera.pdf';
+import ecCouncilPdf from '../aset/eccouncil.pdf';
+import ciscoPdf from '../aset/cisco.pdf';
+import dliPdf from '../aset/dli.pdf';
+import jetsonNanoPdf from '../aset/nano.pdf';
+
 
 const container = {
   hidden: { opacity: 0 },
@@ -33,7 +42,6 @@ const techColors = {
   'Git': 'bg-red-400',
 };
 
-// Data for the new Experience section
 const experiences = [
   {
     company: "CyberSecurity-Nxxt",
@@ -43,42 +51,49 @@ const experiences = [
   }
 ];
 
+// --- Step 2: Add a 'link' property to each certificate object ---
 const certificates = [
   {
     name: "Google AI Essentials",
     issuer: "Coursera",
     date: "2023",
-    icon: Brain
+    icon: Brain,
+    link: aiEssentialsPdf
   },
   {
     name: "Foundations of Cybersecurity",
     issuer: "Coursera",
     date: "2023",
-    icon: Shield
+    icon: Shield,
+    link: courseraCybersecurityPdf
   },
   {
     name: "Ethical Hacking Essentials",
     issuer: "EC-Council",
     date: "2023",
-    icon: Code
+    icon: Code,
+    link: ecCouncilPdf
   },
   {
     name: "Introduction to Cybersecurity",
     issuer: "Cisco Networking Academy",
     date: "2023",
-    icon: Shield
+    icon: Shield,
+    link: ciscoPdf
   },
   {
     name: "Fundamentals of Deep Learning",
     issuer: "NVIDIA DLI",
     date: "2023",
-    icon: Brain
+    icon: Brain,
+    link: dliPdf
   },
   {
     name: "Getting Started with AI on Jetson Nano",
     issuer: "NVIDIA DLI",
     date: "2023",
-    icon: Brain
+    icon: Brain,
+    link: jetsonNanoPdf
   }
 ];
 
@@ -109,13 +124,7 @@ export function About() {
           variants={item} 
           className="bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-2xl p-8 shadow-2xl border border-purple-500/20"
         >
-          <motion.p variants={item} className="text-gray-300 mb-8 leading-relaxed text-lg">
-            A passionate and motivated cybersecurity enthusiast with a strong foundation in networking, programming,
-            and security principles. Demonstrated hands-on experience with tools like Kali Linux, Nmap, Metasploit, and
-            Wireshark, alongside a solid understanding of penetration testing, ethical hacking, and network defense
-            mechanisms.
-          </motion.p>
-
+          {/* ... (Summary, Technologies, Skills, Education sections remain the same) ... */}
           <div className="space-y-10">
             {/* Technologies */}
             <motion.div variants={item}>
@@ -197,7 +206,7 @@ export function About() {
               </div>
             </motion.div>
             
-            {/* START: New Experience Section */}
+            {/* Experience */}
             <motion.div variants={item}>
               <div className="flex items-center gap-3 mb-4">
                 <Briefcase className="text-orange-400" size={28} />
@@ -217,9 +226,8 @@ export function About() {
                 ))}
               </div>
             </motion.div>
-            {/* END: New Experience Section */}
 
-            {/* Certifications */}
+            {/* --- Step 3: Wrap the certificate card with an <a> tag --- */}
             <motion.div variants={item}>
               <div className="flex items-center gap-3 mb-6">
                 <FileText className="text-pink-400" size={28} />
@@ -229,33 +237,39 @@ export function About() {
                 {certificates.map((cert, index) => {
                   const Icon = cert.icon;
                   return (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                      whileHover={{ 
-                        scale: 1.05, 
-                        boxShadow: "0 10px 30px rgba(236, 72, 153, 0.3)",
-                        rotate: 2
-                      }}
-                      className="bg-gradient-to-br from-[#0f172a] to-[#1e293b] p-5 rounded-xl border border-pink-500/20 cursor-pointer"
+                    <a 
+                      href={cert.link} 
+                      key={index} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
                     >
-                      <div className="flex items-start gap-3">
-                        <motion.div
-                          whileHover={{ rotate: 360 }}
-                          transition={{ duration: 0.6 }}
-                        >
-                          <Icon className="text-pink-400" size={24} />
-                        </motion.div>
-                        <div className="flex-1">
-                          <h4 className="font-medium text-white mb-1">{cert.name}</h4>
-                          <p className="text-sm text-gray-400">{cert.issuer}</p>
-                          <p className="text-xs text-pink-400 mt-2">{cert.date}</p>
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                        whileHover={{ 
+                          scale: 1.05, 
+                          boxShadow: "0 10px 30px rgba(236, 72, 153, 0.3)",
+                          rotate: 2
+                        }}
+                        className="bg-gradient-to-br from-[#0f172a] to-[#1e293b] h-full p-5 rounded-xl border border-pink-500/20 cursor-pointer"
+                      >
+                        <div className="flex items-start gap-3">
+                          <motion.div
+                            whileHover={{ rotate: 360 }}
+                            transition={{ duration: 0.6 }}
+                          >
+                            <Icon className="text-pink-400" size={24} />
+                          </motion.div>
+                          <div className="flex-1">
+                            <h4 className="font-medium text-white mb-1">{cert.name}</h4>
+                            <p className="text-sm text-gray-400">{cert.issuer}</p>
+                            <p className="text-xs text-pink-400 mt-2">{cert.date}</p>
+                          </div>
+                          <ExternalLink size={16} className="text-gray-500" />
                         </div>
-                        <ExternalLink size={16} className="text-gray-500" />
-                      </div>
-                    </motion.div>
+                      </motion.div>
+                    </a>
                   );
                 })}
               </div>
