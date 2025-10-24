@@ -31,51 +31,51 @@ export function Projects() {
   const projects = [
     {
       title: "Digital On-Duty Forms",
-      description: "Developed a secure digital platform for student leave applications with role-based access. Implemented user authentication, form validation, and server-side access control using PHP and MySQL.",
+      description: "Designed and implemented a digital platform for students to apply for on-duty leave. Built the system using HTML, CSS, JavaScript, PHP, and MySQL, ensuring smooth data handling, user authentication, and role-based access for different approval levels.",
       image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&auto=format",
-      tags: ["PHP", "MySQL", "Security"],
+      tags: ["PHP", "MySQL", "HTML/CSS", "Authentication"],
       link: "https://github.com/Surya-Chinnathambi/odform",
       gradient: "from-blue-500 to-cyan-500"
     },
     {
-      title: "Vulnerability Assessment on Local Network",
-      description: "Performed comprehensive internal network scans using Nmap, validated exploits via Metasploit on isolated lab VMs, and analyzed packet captures with Wireshark.",
-      image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&auto=format",
-      tags: ["Nmap", "Metasploit", "Wireshark"],
-      link: "https://github.com/Suryzz",
-      gradient: "from-purple-500 to-pink-500"
-    },
-    {
-      title: "Wild Boar Detection & Sound Alert System",
-      description: "Built an edge ML solution using YOLOv8 on an ESP32-CAM pipeline to detect wild boars in farmland, triggering configurable sound alerts to reduce crop damage.",
+      title: "Wild Boar Detection & Alert System",
+      description: "A solar-powered system using an ESP camera to detect wild boars in predefined areas, sending real-time mobile alerts. Designed to be cost-effective and reliable for protecting crops in remote rural areas.",
       image: "https://images.unsplash.com/photo-1581090700227-1e37b190418e?w=800&auto=format",
-      tags: ["YOLOv8", "ESP32", "Machine Learning"],
+      tags: ["ESP32", "Solar Power", "IoT", "ML"],
       link: "https://github.com/Suryzz",
       gradient: "from-green-500 to-emerald-500"
     },
     {
-      title: "Indian Sign Language Learning Platform",
-      description: "Created an intuitive web application with gesture recognition, interactive quizzes and progress tracking to help users learn Indian Sign Language.",
-      image: "https://images.unsplash.com/photo-1584697964403-b49a2918aa08?w=800&auto=format",
-      tags: ["React", "ML", "Accessibility"],
-      link: "https://github.com/Suryzz",
-      gradient: "from-orange-500 to-red-500"
-    },
-    {
-      title: "HackToolkit – Web Hacking Toolkit",
-      description: "A centralized hub for offensive security tooling and curated learning resources covering recon, fuzzing, XSS, SQLi and OWASP Top 10 patterns.",
+      title: "SecurePulse – PenTesting Tool Guide",
+      description: "A categorized penetration testing toolkit for beginners and professionals. Features organized sections for Information Gathering, Vulnerability Analysis, Web App Testing, and curated payloads to increase testing efficiency in real-world scenarios and CTFs.",
       image: "https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?w=800&auto=format",
-      tags: ["Web Hacking", "OWASP", "Toolkit"],
+      tags: ["Penetration Testing", "Payloads", "CTF", "Toolkit"],
       link: "https://hackingtoolsinfo.netlify.app/",
       gradient: "from-red-500 to-pink-500"
     },
     {
-      title: "Network Security Monitoring Dashboard",
-      description: "Real-time network traffic analysis dashboard with threat detection capabilities, built with modern web technologies and security best practices.",
-      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format",
-      tags: ["React", "Security", "Dashboard"],
+      title: "ISL Learning Platform (In-Progress)",
+      description: "An interactive, AI-powered web application that helps users learn and practice Indian Sign Language through real-time hand gesture recognition. The platform is lightweight and browser-based, making it accessible without installation.",
+      image: "https://images.unsplash.com/photo-1584697964403-b49a2918aa08?w=800&auto=format",
+      tags: ["AI", "Gesture Recognition", "Eleventy.js"],
       link: "https://github.com/Suryzz",
-      gradient: "from-indigo-500 to-purple-500"
+      gradient: "from-orange-500 to-red-500"
+    },
+    {
+        title: "Web Vulnerability Scanner (In-Progress)",
+        description: "Automatically crawls web applications to identify vulnerabilities like SQL injection, XSS, and CSRF. Generates detailed reports outlining identified vulnerabilities, their severity, and recommended remediation steps.",
+        image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=800&auto=format",
+        tags: ["Vulnerability Scanner", "XSS", "SQLi", "CSRF"],
+        link: "https://github.com/Suryzz",
+        gradient: "from-yellow-500 to-orange-500"
+    },
+    {
+        title: "FashionChatBot E-commerce Platform",
+        description: "An e-commerce platform featuring an AI chatbot for product suggestions, order tracking, and customer support. Built with React for the frontend and Python for the backend logic.",
+        image: "https://images.unsplash.com/photo-1522204523234-8729aa6e3d5f?w=800&auto=format",
+        tags: ["React", "Python", "Chatbot", "E-commerce"],
+        link: "https://fashionchatbot.netlify.app/",
+        gradient: "from-teal-500 to-cyan-500"
     }
   ];
 
@@ -113,7 +113,7 @@ export function Projects() {
               className="group relative"
             >
               <motion.div
-                className="relative bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-2xl overflow-hidden shadow-2xl border border-purple-500/20"
+                className="relative bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-2xl overflow-hidden shadow-2xl border border-purple-500/20 h-full flex flex-col" // Added h-full and flex display
                 whileHover={{ 
                   boxShadow: "0 20px 60px rgba(168, 85, 247, 0.4)",
                   scale: 1.02
@@ -142,11 +142,11 @@ export function Projects() {
                 </div>
 
                 {/* Content */}
-                <div className="p-6">
+                <div className="p-6 flex flex-col flex-grow"> {/* Added flex-grow */}
                   <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-500 transition-all">
                     {project.title}
                   </h3>
-                  <p className="text-gray-400 mb-4 text-sm leading-relaxed line-clamp-3">
+                  <p className="text-gray-400 mb-4 text-sm leading-relaxed line-clamp-3 flex-grow"> {/* Added flex-grow */}
                     {project.description}
                   </p>
 
@@ -167,7 +167,7 @@ export function Projects() {
                   </div>
 
                   {/* Action buttons */}
-                  <div className="flex gap-3">
+                  <div className="flex gap-3 mt-auto"> {/* Added mt-auto to push to bottom */}
                     <motion.a
                       href={project.link}
                       target="_blank"
@@ -180,7 +180,7 @@ export function Projects() {
                       View Project
                     </motion.a>
                     <motion.a
-                      href={project.link}
+                      href={project.link.includes('github') ? project.link : 'https://github.com/Surya-Chinnathambi'} // Link to specific repo or general profile
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.05, rotate: 360 }}
