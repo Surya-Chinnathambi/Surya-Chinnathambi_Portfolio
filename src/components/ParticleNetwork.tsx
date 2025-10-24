@@ -140,7 +140,7 @@ export function ParticleNetwork() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-[-1]" // Set to -1 to be behind everything
+      className="fixed inset-0 pointer-events-none z-[-1]" // This is the key fix
       style={{ background: 'radial-gradient(ellipse at center, #1e293b 0%, #0f172a 100%)' }}
     />
   );
