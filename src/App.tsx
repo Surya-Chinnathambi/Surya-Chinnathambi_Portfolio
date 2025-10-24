@@ -8,47 +8,37 @@ import { CustomCursor } from './components/CustomCursor';
 import { ParticleNetwork } from './components/ParticleNetwork';
 
 function App() {
-  const [activeSection, setActiveSection] = useState('home');
+  const [activeSection, setActiveSection] = useState('home');
 
-  useEffect(() => {
-    // Set smooth scroll behavior for the entire page
-    document.documentElement.style.scrollBehavior = 'smooth';
-    return () => {
-      document.documentElement.style.scrollBehavior = 'auto'; // Cleanup on unmount
-    };
-  }, []);
+  // small example effect if you need smooth scroll / setup
+  useEffect(() => {
+    // optional: ensure smooth scroll is enabled when app mounts
+    document.documentElement.style.scrollBehavior = 'smooth';
+    return () => {
+      document.documentElement.style.scrollBehavior = '';
+    };
+  }, []);
 
-  return (
-    <div className="min-h-screen bg-[#0f172a] text-white relative overflow-x-hidden">
-      {/* Background and cursor effects */}
-      <CustomCursor />
-      <ParticleNetwork />
+  return (
+    <div className="min-h-screen bg-[#0f172a] text-white relative overflow-x-hidden">
+      <CustomCursor />
+      <ParticleNetwork />
 
-      {/* Navigation bar that tracks scroll position */}
-      <Navigation activeSection={activeSection} />
+      {/* Navigation receives current section and setter */}
+      <Navigation activeSection={activeSection} setActiveSection={setActiveSection} />
 
-      {/* Main content, all sections are rendered on one page */}
-      <main>
-        <section id="home">
-          <Home />
-        </section>
-        <section id="about">
-          <About />
-        </section>
-        <section id="projects">
-          <Projects />
-        </section>
-        <section id="contact">
-          <Contact />
-        </section>
-      </main>
+      <main>
+        {activeSection === 'home' && <Home />}
+        {activeSection === 'about' && <About />}
+        {activeSection === 'projects' && <Projects />}
+        {activeSection === 'contact' && <Contact />}
+      </main>
 
-      {/* Footer */}
-      <footer className="relative z-10 text-center py-8 text-gray-400 border-t border-gray-800/50">
-        <p>© {new Date().getFullYear()} Surya C. All rights reserved.</p>
-      </footer>
-    </div>
-  );
+      <footer className="text-center py-8 text-gray-400">
+        <p>© 2024 Surya C. All rights reserved.</p>
+      </footer>
+    </div>
+  );
 }
 
 export default App;
