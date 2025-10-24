@@ -1,32 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import { Navigation } from './Navigation';
-import { Home } from './Home';
-import { About } from './About';
-import { Projects } from './Projects';
-import { Contact } from './Contact';
-import { CustomCursor } from './CustomCursor';
-import { ParticleNetwork } from './ParticleNetwork';
+import { Navigation } from './components/Navigation';
+import { Home } from './components/Home';
+import { About } from './components/About';
+import { Projects } from './components/Projects';
+import { Contact } from './components/Contact';
+import { CustomCursor } from './components/CustomCursor';
+import { ParticleNetwork } from './components/ParticleNetwork';
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
 
-  // Smooth scroll behavior
+  // small example effect if you need smooth scroll / setup
   useEffect(() => {
+    // optional: ensure smooth scroll is enabled when app mounts
     document.documentElement.style.scrollBehavior = 'smooth';
+    return () => {
+      document.documentElement.style.scrollBehavior = '';
+    };
   }, []);
 
   return (
     <div className="min-h-screen bg-[#0f172a] text-white relative overflow-x-hidden">
-      {/* Custom Cursor */}
       <CustomCursor />
-      
-      {/* Particle Network Background */}
       <ParticleNetwork />
-      
-      {/* Navigation */}
+
+      {/* Navigation receives current section and setter */}
       <Navigation activeSection={activeSection} setActiveSection={setActiveSection} />
-      
-      {/* Main Content */}
+
       <main>
         {activeSection === 'home' && <Home />}
         {activeSection === 'about' && <About />}
@@ -34,8 +34,7 @@ function App() {
         {activeSection === 'contact' && <Contact />}
       </main>
 
-      {/* Footer */}
-      <footer className="text-center py-8 text-gray-400 border-t border-gray-800">
+      <footer className="text-center py-8 text-gray-400">
         <p>© 2024 Surya C. All rights reserved.</p>
       </footer>
     </div>
