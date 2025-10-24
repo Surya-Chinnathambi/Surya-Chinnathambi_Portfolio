@@ -1,13 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FileText, ExternalLink } from 'lucide-react';
-
-import aiessentials from '../aset/aiessentials.pdf';
-import coursera from '../aset/coursera.pdf';
-import eccouncil from '../aset/eccouncil.pdf';
-import cisco from '../aset/cisco.pdf';
-import dli from '../aset/dli.pdf';
-import nano from '../aset/nano.pdf';
+import { FileText, ExternalLink, Award, Code, Shield, Brain } from 'lucide-react';
 
 const container = {
   hidden: { opacity: 0 },
@@ -44,38 +37,38 @@ const certificates = [
   {
     name: "Google AI Essentials",
     issuer: "Coursera",
-    pdfUrl: aiessentials,
-    date: "2023"
+    date: "2023",
+    icon: Brain
   },
   {
     name: "Foundations of Cybersecurity",
     issuer: "Coursera",
-    pdfUrl: coursera,
-    date: "2023"
+    date: "2023",
+    icon: Shield
   },
   {
     name: "Ethical Hacking Essentials",
     issuer: "EC-Council",
-    pdfUrl: eccouncil,
-    date: "2023"
+    date: "2023",
+    icon: Code
   },
   {
     name: "Introduction to Cybersecurity",
     issuer: "Cisco Networking Academy",
-    pdfUrl: cisco,
-    date: "2023"
+    date: "2023",
+    icon: Shield
   },
   {
     name: "Fundamentals of Deep Learning",
     issuer: "NVIDIA DLI",
-    pdfUrl: dli,
-    date: "2023"
+    date: "2023",
+    icon: Brain
   },
   {
     name: "Getting Started with AI on Jetson Nano",
     issuer: "NVIDIA DLI",
-    pdfUrl: nano,
-    date: "2023"
+    date: "2023",
+    icon: Brain
   }
 ];
 
@@ -87,26 +80,48 @@ export function About() {
       variants={container}
       className="container mx-auto px-4 py-20"
     >
-      <motion.h2 variants={item} className="text-3xl font-bold text-center mb-12">About Me</motion.h2>
-      <div className="max-w-3xl mx-auto">
-        <motion.div variants={item} className="bg-[#1e293b] rounded-lg p-8">
-          <motion.p variants={item} className="text-gray-300 mb-6">
+      <motion.h2 
+        variants={item} 
+        className="text-5xl font-bold text-center mb-4 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-transparent bg-clip-text"
+      >
+        About Me
+      </motion.h2>
+      
+      <motion.p
+        variants={item}
+        className="text-center text-gray-400 mb-12 max-w-2xl mx-auto"
+      >
+        Passionate cybersecurity professional with expertise in penetration testing and secure development
+      </motion.p>
+
+      <div className="max-w-4xl mx-auto">
+        <motion.div 
+          variants={item} 
+          className="bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-2xl p-8 shadow-2xl border border-purple-500/20"
+        >
+          <motion.p variants={item} className="text-gray-300 mb-8 leading-relaxed text-lg">
             A passionate and motivated cybersecurity enthusiast with a strong foundation in networking, programming,
             and security principles. Demonstrated hands-on experience with tools like Kali Linux, Nmap, Metasploit, and
             Wireshark, alongside a solid understanding of penetration testing, ethical hacking, and network defense
-            mechanisms. Seeking a 6-month internship in Network Security or Penetration Testing to apply skills in
-            real-world scenarios and contribute to secure and resilient systems.
+            mechanisms.
           </motion.p>
 
-          <div className="space-y-8">
+          <div className="space-y-10">
+            {/* Technologies */}
             <motion.div variants={item}>
-              <h3 className="text-xl font-semibold mb-4">Technologies</h3>
-              <div className="flex flex-wrap gap-2">
-                {Object.entries(techColors).map(([tech, color]) => (
+              <div className="flex items-center gap-3 mb-4">
+                <Code className="text-purple-400" size={28} />
+                <h3 className="text-2xl font-semibold">Technologies</h3>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                {Object.entries(techColors).map(([tech, color], index) => (
                   <motion.span
                     key={tech}
-                    className={`${color} px-3 py-1 rounded-full text-white text-sm`}
-                    whileHover={{ scale: 1.1 }}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: index * 0.05 }}
+                    className={`${color} px-4 py-2 rounded-full text-white text-sm font-medium shadow-lg cursor-pointer`}
+                    whileHover={{ scale: 1.15, rotate: 5 }}
                     whileTap={{ scale: 0.95 }}
                   >
                     {tech}
@@ -115,55 +130,102 @@ export function About() {
               </div>
             </motion.div>
 
+            {/* Skills */}
             <motion.div variants={item}>
-              <h3 className="text-xl font-semibold mb-4">Skills</h3>
-              <div className="space-y-2">
-                <p><span className="font-medium">Security & Networking:</span> Kali Linux, Nmap, Metasploit, Wireshark, Burp Suite, TCP/IP, Firewalls</p>
-                <p><span className="font-medium">Programming & Scripting:</span> C, Python, JavaScript, Bash</p>
-                <p><span className="font-medium">Backend & DB:</span> PHP, MongoDB, MySQL</p>
-                <p><span className="font-medium">Frontend:</span> HTML, CSS, JavaScript</p>
-                <p><span className="font-medium">Others:</span> Git, GitHub, Firebase</p>
+              <div className="flex items-center gap-3 mb-4">
+                <Shield className="text-blue-400" size={28} />
+                <h3 className="text-2xl font-semibold">Skills</h3>
               </div>
-            </motion.div>
-
-            <motion.div variants={item}>
-              <h3 className="text-xl font-semibold mb-4">Education</h3>
-              <div className="space-y-4">
-                <div>
-                  <h4 className="font-medium">Sri Ramakrishna Engineering College</h4>
-                  <p className="text-gray-400">M.Tech CSE (5-Year Integrated) - CGPA: 7.96 (Expected 2025)</p>
-                </div>
-                <div>
-                  <h4 className="font-medium">Government Higher Secondary School, Kallakurichi</h4>
-                  <p className="text-gray-400">12th Standard - Completed May 2022</p>
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div variants={item}>
-              <h3 className="text-xl font-semibold mb-4">Certifications</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {certificates.map((cert, index) => (
+              <div className="grid md:grid-cols-2 gap-4">
+                {[
+                  { title: "Security & Networking", skills: "Kali Linux, Nmap, Metasploit, Wireshark, Burp Suite, TCP/IP, Firewalls" },
+                  { title: "Programming & Scripting", skills: "C, Python, JavaScript, Bash" },
+                  { title: "Backend & DB", skills: "PHP, MongoDB, MySQL" },
+                  { title: "Frontend", skills: "HTML, CSS, JavaScript, React" }
+                ].map((category, index) => (
                   <motion.div
                     key={index}
-                    className="bg-[#0f172a] p-4 rounded-lg flex items-start gap-3"
-                    whileHover={{ scale: 1.02 }}
+                    whileHover={{ scale: 1.02, x: 5 }}
+                    className="bg-[#0f172a] p-4 rounded-lg border border-purple-500/10"
                   >
-                    <FileText className="text-blue-400 mt-1" size={20} />
-                    <div className="flex-1">
-                      <h4 className="font-medium">{cert.name}</h4>
-                      <p className="text-sm text-gray-400">{cert.issuer} - {cert.date}</p>
-                      <a
-                        href={cert.pdfUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-blue-400 hover:text-blue-300 text-sm mt-1"
-                      >
-                        View Certificate <ExternalLink size={14} />
-                      </a>
-                    </div>
+                    <p className="font-medium text-purple-400 mb-2">{category.title}</p>
+                    <p className="text-sm text-gray-400">{category.skills}</p>
                   </motion.div>
                 ))}
+              </div>
+            </motion.div>
+
+            {/* Education */}
+            <motion.div variants={item}>
+              <div className="flex items-center gap-3 mb-4">
+                <Award className="text-green-400" size={28} />
+                <h3 className="text-2xl font-semibold">Education</h3>
+              </div>
+              <div className="space-y-4">
+                {[
+                  {
+                    school: "Sri Ramakrishna Engineering College",
+                    degree: "M.Tech CSE (5-Year Integrated)",
+                    info: "CGPA: 7.96 (Expected 2025)"
+                  },
+                  {
+                    school: "Government Higher Secondary School, Kallakurichi",
+                    degree: "12th Standard",
+                    info: "Completed May 2022"
+                  }
+                ].map((edu, index) => (
+                  <motion.div
+                    key={index}
+                    whileHover={{ scale: 1.02, x: 5 }}
+                    className="bg-[#0f172a] p-5 rounded-lg border border-green-500/10"
+                  >
+                    <h4 className="font-medium text-lg text-white">{edu.school}</h4>
+                    <p className="text-gray-400">{edu.degree}</p>
+                    <p className="text-sm text-green-400 mt-1">{edu.info}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Certifications */}
+            <motion.div variants={item}>
+              <div className="flex items-center gap-3 mb-6">
+                <FileText className="text-pink-400" size={28} />
+                <h3 className="text-2xl font-semibold">Certifications</h3>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {certificates.map((cert, index) => {
+                  const Icon = cert.icon;
+                  return (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      whileHover={{ 
+                        scale: 1.05, 
+                        boxShadow: "0 10px 30px rgba(236, 72, 153, 0.3)",
+                        rotate: 2
+                      }}
+                      className="bg-gradient-to-br from-[#0f172a] to-[#1e293b] p-5 rounded-xl border border-pink-500/20 cursor-pointer"
+                    >
+                      <div className="flex items-start gap-3">
+                        <motion.div
+                          whileHover={{ rotate: 360 }}
+                          transition={{ duration: 0.6 }}
+                        >
+                          <Icon className="text-pink-400" size={24} />
+                        </motion.div>
+                        <div className="flex-1">
+                          <h4 className="font-medium text-white mb-1">{cert.name}</h4>
+                          <p className="text-sm text-gray-400">{cert.issuer}</p>
+                          <p className="text-xs text-pink-400 mt-2">{cert.date}</p>
+                        </div>
+                        <ExternalLink size={16} className="text-gray-500" />
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </div>
             </motion.div>
           </div>
