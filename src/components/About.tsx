@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FileText, ExternalLink, Award, Code, Shield, Brain } from 'lucide-react';
+import { FileText, ExternalLink, Award, Code, Shield, Brain, Briefcase } from 'lucide-react'; // Added Briefcase icon
 
 const container = {
   hidden: { opacity: 0 },
@@ -32,6 +32,16 @@ const techColors = {
   'MySQL': 'bg-blue-400',
   'Git': 'bg-red-400',
 };
+
+// Data for the new Experience section
+const experiences = [
+  {
+    company: "CyberSecurity-Nxxt",
+    location: "Coimbatore",
+    role: "CyberSecurity Intern",
+    duration: "July 2025 - Jan 2026"
+  }
+];
 
 const certificates = [
   {
@@ -186,6 +196,28 @@ export function About() {
                 ))}
               </div>
             </motion.div>
+            
+            {/* START: New Experience Section */}
+            <motion.div variants={item}>
+              <div className="flex items-center gap-3 mb-4">
+                <Briefcase className="text-orange-400" size={28} />
+                <h3 className="text-2xl font-semibold">Experience</h3>
+              </div>
+              <div className="space-y-4">
+                {experiences.map((exp, index) => (
+                  <motion.div
+                    key={index}
+                    whileHover={{ scale: 1.02, x: 5 }}
+                    className="bg-[#0f172a] p-5 rounded-lg border border-orange-500/10"
+                  >
+                    <h4 className="font-medium text-lg text-white">{exp.role}</h4>
+                    <p className="text-gray-400">{exp.company} - {exp.location}</p>
+                    <p className="text-sm text-orange-400 mt-1">{exp.duration}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+            {/* END: New Experience Section */}
 
             {/* Certifications */}
             <motion.div variants={item}>
