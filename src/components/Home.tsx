@@ -5,8 +5,7 @@ import Tilt from 'react-parallax-tilt';
 import profileImage from '../aset/profileimage.jpg'; // Make sure this path is correct
 
 const highlights = [
-  "Network Security Specialist",
-  "Penetration Testing Expert",
+  "Penetration Tester",
   "Cybersecurity Enthusiast",
   "Web Developer"
 ];
@@ -217,7 +216,7 @@ export function Home() {
                 className="flex gap-6 mt-8"
               >
                 {[
-                  { icon: Github, href: "https://github.com/Suryzz", color: "hover:text-purple-400" },
+                  { icon: Github, href: "https://github.com/Surya-Chinnathambi", color: "hover:text-purple-400" },
                   { icon: Linkedin, href: "http://www.linkedin.com/in/surya-c-a4627725a/", color: "hover:text-blue-400" },
                   { icon: Mail, href: "mailto:suryag.chinnathambi@gmail.com", color: "hover:text-green-400" }
                 ].map((social, index) => (
@@ -277,7 +276,6 @@ export function Home() {
             <h2 className="text-3xl font-bold mb-8 text-center bg-gradient-to-r from-emerald-400 to-teal-500 text-transparent bg-clip-text">Featured Skills</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:grid-cols-2 lg:grid-cols-4">
               {[
-                { title: "Network Security", glow: "from-blue-500 to-cyan-400" },
                 { title: "Penetration Testing", glow: "from-purple-500 to-pink-400" },
                 { title: "Ethical Hacking", glow: "from-green-500 to-emerald-400" },
                 { title: "Web Development", glow: "from-orange-500 to-yellow-400" }
