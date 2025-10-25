@@ -59,76 +59,9 @@ export function Home() {
   }, []);
 
   return (
-    <div className="relative overflow-hidden min-h-screen text-white">
-      {/* Animated Gradient Background */}
-      <motion.div
-        className="absolute inset-0 z-[-2]"
-        animate={{
-          background: [
-            'linear-gradient(135deg, #020617 0%, #111827 50%, #1e293b 100%)',
-            'linear-gradient(135deg, #1e293b 0%, #020617 50%, #111827 100%)',
-            'linear-gradient(135deg, #111827 0%, #1e293b 50%, #020617 100%)',
-          ],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          repeatType: 'mirror',
-          ease: 'linear'
-        }}
-      />
-
-      {/* Mouse Follow Glow Effect */}
-      <motion.div
-        className="absolute rounded-full filter blur-3xl opacity-30 pointer-events-none z-[-1]"
-        style={{
-          width: 400,
-          height: 400,
-          background: 'radial-gradient(circle, rgba(168,85,247,0.4) 0%, rgba(236,72,153,0.2) 50%, transparent 100%)',
-        }}
-        animate={{
-          x: mousePosition.x - 200,
-          y: mousePosition.y - 200,
-        }}
-        transition={{
-          type: "spring",
-          damping: 30,
-          stiffness: 200,
-        }}
-      />
-
-      {/* Floating Shapes */}
-      <div className="absolute inset-0 z-[-1]">
-        <FloatingShape top="10%" left="5%" size={300} delay={0} duration={10} />
-        <FloatingShape top="50%" left="70%" size={250} delay={2} duration={12} />
-        <FloatingShape top="70%" left="20%" size={200} delay={4} duration={15} />
-        <FloatingShape top="30%" left="85%" size={280} delay={1} duration={8} />
-      </div>
-
-      {/* Animated Particles */}
-      <div className="absolute inset-0 z-[-1] overflow-hidden">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-purple-400 rounded-full"
-            initial={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
-              opacity: Math.random() * 0.5 + 0.5,
-            }}
-            animate={{
-              y: [null, Math.random() * window.innerHeight],
-              x: [null, Math.random() * window.innerWidth],
-              opacity: [null, 0, null],
-            }}
-            transition={{
-              duration: Math.random() * 10 + 10,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          />
-        ))}
-      </div>
+    <div className="relative overflow-hidden min-h-screen text-white"
+      style={{ background: 'transparent' }}
+    >
 
       <div className="container mx-auto px-4 py-20 flex items-center justify-center">
         <div className="max-w-6xl mx-auto">
@@ -138,7 +71,7 @@ export function Home() {
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-left"
+              className="text-left backdrop-blur-md bg-white/5 p-8 rounded-3xl border border-white/10 shadow-2xl"
             >
               <motion.h2
                 initial={{ opacity: 0 }}
@@ -275,7 +208,7 @@ export function Home() {
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="relative"
+              className="relative backdrop-blur-md bg-white/5 p-8 rounded-3xl border border-white/10 shadow-2xl"
             >
               <motion.div
                 animate={{
@@ -348,7 +281,7 @@ export function Home() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.9 }}
-            className="mt-24"
+            className="mt-24 backdrop-blur-md bg-white/5 p-12 rounded-3xl border border-white/10 shadow-2xl"
           >
             <motion.h2
               initial={{ opacity: 0, scale: 0.8 }}
