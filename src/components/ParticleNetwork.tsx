@@ -287,8 +287,11 @@ export function ParticleNetwork() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-[-1]"
-      style={{ background: 'radial-gradient(ellipse at center, #1e293b 0%, #0f172a 100%)' }}
+      className="fixed inset-0 pointer-events-none"
+      style={{ 
+        background: 'radial-gradient(ellipse at center, #1e293b 0%, #0f172a 100%)',
+        zIndex: 0
+      }}
     />
   );
 }
