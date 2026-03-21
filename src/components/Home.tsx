@@ -2,9 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Github, Linkedin, Mail, MapPin, Phone, Code, Shield, Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// Import your image
-import profilePic from '../aset/profileimage.jpg';
-
 const highlights = [
   "Cybersecurity Enthusiast",
   "Penetration Tester",
@@ -12,50 +9,14 @@ const highlights = [
   "Ethical Hacker"
 ];
 
-const FloatingShape = ({ top, left, size, delay, duration }) => {
-  return (
-    <motion.div
-      className="absolute rounded-full filter blur-3xl opacity-20"
-      style={{
-        width: size,
-        height: size,
-        top,
-        left,
-        background: 'linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899)',
-      }}
-      initial={{ y: 0, scale: 0.8 }}
-      animate={{
-        y: [0, 30, 0],
-        scale: [0.8, 1.2, 0.8],
-      }}
-      transition={{
-        duration: duration,
-        repeat: Infinity,
-        repeatType: 'mirror',
-        delay: delay,
-        ease: 'easeInOut'
-      }}
-    />
-  );
-};
-
 export function Home() {
   const [currentHighlight, setCurrentHighlight] = useState(0);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentHighlight((prev) => (prev + 1) % highlights.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   return (
@@ -81,7 +42,7 @@ export function Home() {
               >
                 Welcome, I'm
               </motion.h2>
-              
+
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -120,7 +81,7 @@ export function Home() {
                 className="flex items-center gap-2 text-gray-400 mb-8 cursor-pointer"
               >
                 <motion.div
-                  animate={{ 
+                  animate={{
                     y: [0, -5, 0],
                   }}
                   transition={{ duration: 2, repeat: Infinity }}
@@ -148,7 +109,7 @@ export function Home() {
                   </motion.div>
                   <span className="group-hover:text-white transition-colors">(+91) 8870752656</span>
                 </motion.div>
-                
+
                 <motion.div
                   whileHover={{ x: 10, scale: 1.05 }}
                   className="flex items-center gap-3 text-gray-400 cursor-pointer group"
@@ -176,8 +137,8 @@ export function Home() {
                 ].map((social, index) => (
                   <motion.a
                     key={index}
-                    whileHover={{ 
-                      scale: 1.3, 
+                    whileHover={{
+                      scale: 1.3,
                       rotate: social.rotate,
                       boxShadow: "0 0 20px rgba(168, 85, 247, 0.6)"
                     }}
@@ -219,7 +180,7 @@ export function Home() {
                   ],
                   rotate: [0, 2, -2, 0],
                 }}
-                transition={{ 
+                transition={{
                   boxShadow: { duration: 3, repeat: Infinity },
                   rotate: { duration: 5, repeat: Infinity, ease: "easeInOut" }
                 }}
@@ -242,8 +203,13 @@ export function Home() {
                     <motion.img
                       whileHover={{ scale: 1.1 }}
                       transition={{ duration: 0.3 }}
-                      src={profilePic}
+                      src="/profileimage.jpg"
                       alt="Surya C Profile"
+                      width={640}
+                      height={640}
+                      loading="eager"
+                      fetchPriority="high"
+                      decoding="async"
                       className="w-full h-full object-cover rounded-xl"
                     />
                   </div>
@@ -302,7 +268,7 @@ export function Home() {
                   initial={{ opacity: 0, y: 20, rotateY: -90 }}
                   animate={{ opacity: 1, y: 0, rotateY: 0 }}
                   transition={{ delay: 1 + index * 0.1, duration: 0.5 }}
-                  whileHover={{ 
+                  whileHover={{
                     scale: 1.08,
                     boxShadow: "0 30px 60px rgba(0, 0, 0, 0.5)",
                     y: -15,
@@ -323,14 +289,14 @@ export function Home() {
                     }}
                     transition={{ duration: 3, repeat: Infinity }}
                   />
-                  
+
                   <motion.div
                     whileHover={{ rotate: 360, scale: 1.2 }}
                     transition={{ duration: 0.6 }}
                   >
                     <skill.icon size={48} className="mx-auto mb-4 text-white/90 relative z-10" />
                   </motion.div>
-                  
+
                   <h3 className="text-2xl font-bold mb-2 relative z-10">{skill.title}</h3>
                   <motion.p
                     initial={{ opacity: 0.7 }}

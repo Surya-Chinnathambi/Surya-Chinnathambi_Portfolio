@@ -42,25 +42,26 @@ export function ParticleNetwork() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    let animationFrameId: number;
+    let animationFrameId = 0;
+    let isVisible = document.visibilityState === 'visible';
 
     const particles: Particle[] = [];
     const lightStreaks: LightStreak[] = [];
     const floatingOrbs: FloatingOrb[] = [];
-    
-    const particleCount = 70;
-    const maxDistance = 140;
+
+    const particleCount = 36;
+    const maxDistance = 110;
     const returnForce = 0.0003;
     const damping = 0.98;
-    const streakCount = 8;
-    const orbCount = 5;
+    const streakCount = 4;
+    const orbCount = 3;
 
     const colorPalette = ['#a855f7', '#ec4899', '#3b82f6', '#14b8a6', '#f59e0b'];
 
     const setup = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      
+
       // Initialize particles
       particles.length = 0;
       for (let i = 0; i < particleCount; i++) {
@@ -109,6 +110,11 @@ export function ParticleNetwork() {
     };
 
     const animate = (time = 0) => {
+      if (!isVisible) {
+        animationFrameId = requestAnimationFrame(animate);
+        return;
+      }
+
       // Create motion blur effect
       ctx.fillStyle = 'rgba(15, 23, 42, 0.15)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -142,7 +148,7 @@ export function ParticleNetwork() {
         orbGradient.addColorStop(0, `${orb.color}15`);
         orbGradient.addColorStop(0.5, `${orb.color}08`);
         orbGradient.addColorStop(1, `${orb.color}00`);
-        
+
         ctx.fillStyle = orbGradient;
         ctx.beginPath();
         ctx.arc(orb.x, orb.y, orbRadius, 0, Math.PI * 2);
@@ -181,11 +187,11 @@ export function ParticleNetwork() {
         ctx.beginPath();
         ctx.strokeStyle = `rgba(168, 85, 247, ${0.1 - i * 0.03})`;
         ctx.lineWidth = 2;
-        
+
         for (let x = 0; x < canvas.width; x += 5) {
-          const y = canvas.height / 2 + 
-                    Math.sin(x * 0.01 + time * 0.002 + i * 2) * 50 +
-                    Math.sin(x * 0.02 + time * 0.001 + i) * 30;
+          const y = canvas.height / 2 +
+            Math.sin(x * 0.01 + time * 0.002 + i * 2) * 50 +
+            Math.sin(x * 0.02 + time * 0.001 + i) * 30;
           if (x === 0) {
             ctx.moveTo(x, y);
           } else {
@@ -232,7 +238,7 @@ export function ParticleNetwork() {
         ctx.shadowBlur = 20;
         ctx.fill();
       });
-      
+
       ctx.shadowBlur = 0;
 
       // Draw particle connections
@@ -246,7 +252,7 @@ export function ParticleNetwork() {
             const opacity = 1 - distance / maxDistance;
             ctx.lineWidth = 0.5 + opacity;
             ctx.strokeStyle = `rgba(236, 72, 153, ${opacity * 0.5})`;
-            
+
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
@@ -260,7 +266,7 @@ export function ParticleNetwork() {
         const sparkleX = Math.random() * canvas.width;
         const sparkleY = Math.random() * canvas.height;
         const sparkleColor = colorPalette[Math.floor(Math.random() * colorPalette.length)];
-        
+
         ctx.fillStyle = sparkleColor;
         ctx.shadowColor = sparkleColor;
         ctx.shadowBlur = 15;
@@ -273,13 +279,19 @@ export function ParticleNetwork() {
       animationFrameId = requestAnimationFrame(animate);
     };
 
+    const handleVisibility = () => {
+      isVisible = document.visibilityState === 'visible';
+    };
+
     setup();
     animate();
-    
+
     window.addEventListener('resize', setup);
+    document.addEventListener('visibilitychange', handleVisibility);
 
     return () => {
       window.removeEventListener('resize', setup);
+      document.removeEventListener('visibilitychange', handleVisibility);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
@@ -288,7 +300,7 @@ export function ParticleNetwork() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none"
-      style={{ 
+      style={{
         background: 'radial-gradient(ellipse at center, #1e293b 0%, #0f172a 100%)',
         zIndex: 0
       }}

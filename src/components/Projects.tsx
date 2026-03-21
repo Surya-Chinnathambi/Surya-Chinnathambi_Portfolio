@@ -15,21 +15,21 @@ const containerVariants = {
 
 const itemVariants = {
   hidden: { opacity: 0, y: 30, scale: 0.95, rotateY: -20 },
-  show: { 
-    opacity: 1, 
-    y: 0, 
+  show: {
+    opacity: 1,
+    y: 0,
     scale: 1,
     rotateY: 0,
-    transition: { 
-      type: "spring", 
-      stiffness: 100, 
-      damping: 15 
-    } 
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 15
+    }
   },
 };
 
 export function Projects() {
-  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const projects = [
     {
@@ -85,7 +85,7 @@ export function Projects() {
   return (
     <div className="relative min-h-screen py-20 overflow-hidden">
       {/* Animated background gradient */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0 -z-10"
         animate={{
           background: [
@@ -102,22 +102,28 @@ export function Projects() {
       />
 
       {/* Floating orbs */}
-      {[...Array(5)].map((_, i) => (
+      {[
+        { top: '10%', left: '5%', color: '#a855f7' },
+        { top: '25%', left: '80%', color: '#ec4899' },
+        { top: '65%', left: '12%', color: '#3b82f6' },
+      ].map((orb, i) => (
         <motion.div
           key={i}
           className="absolute rounded-full filter blur-3xl opacity-20"
           style={{
-            width: Math.random() * 300 + 200,
-            height: Math.random() * 300 + 200,
-            background: `radial-gradient(circle, ${['#a855f7', '#ec4899', '#3b82f6', '#14b8a6'][i % 4]} 0%, transparent 70%)`,
+            width: 220,
+            height: 220,
+            top: orb.top,
+            left: orb.left,
+            background: `radial-gradient(circle, ${orb.color} 0%, transparent 70%)`,
           }}
           animate={{
-            x: [Math.random() * window.innerWidth, Math.random() * window.innerWidth],
-            y: [Math.random() * window.innerHeight, Math.random() * window.innerHeight],
+            x: [0, 30, 0],
+            y: [0, -30, 0],
             scale: [1, 1.5, 1],
           }}
           transition={{
-            duration: Math.random() * 20 + 15,
+            duration: 16 + i * 2,
             repeat: Infinity,
             repeatType: 'reverse',
             ease: 'easeInOut'
@@ -125,28 +131,6 @@ export function Projects() {
         />
       ))}
 
-      {/* Sparkle particles */}
-      {[...Array(30)].map((_, i) => (
-        <motion.div
-          key={`sparkle-${i}`}
-          className="absolute w-1 h-1 bg-white rounded-full"
-          initial={{
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
-            opacity: 0,
-          }}
-          animate={{
-            opacity: [0, 1, 0],
-            scale: [0, 1.5, 0],
-          }}
-          transition={{
-            duration: Math.random() * 3 + 2,
-            repeat: Infinity,
-            delay: Math.random() * 5,
-          }}
-        />
-      ))}
-      
       <motion.div
         initial="hidden"
         animate="show"
@@ -209,7 +193,7 @@ export function Projects() {
             >
               <motion.div
                 className="relative bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-2xl overflow-hidden shadow-2xl border border-purple-500/20 h-full flex flex-col"
-                whileHover={{ 
+                whileHover={{
                   boxShadow: "0 25px 70px rgba(168, 85, 247, 0.5)",
                   scale: 1.03,
                   rotateY: 5,
@@ -220,12 +204,12 @@ export function Projects() {
                 <motion.div
                   className="absolute inset-0 rounded-2xl"
                   animate={{
-                    boxShadow: hoveredIndex === index 
+                    boxShadow: hoveredIndex === index
                       ? [
-                          '0 0 20px rgba(168, 85, 247, 0.3)',
-                          '0 0 40px rgba(236, 72, 153, 0.5)',
-                          '0 0 20px rgba(168, 85, 247, 0.3)',
-                        ]
+                        '0 0 20px rgba(168, 85, 247, 0.3)',
+                        '0 0 40px rgba(236, 72, 153, 0.5)',
+                        '0 0 20px rgba(168, 85, 247, 0.3)',
+                      ]
                       : '0 0 0px rgba(0, 0, 0, 0)',
                   }}
                   transition={{ duration: 2, repeat: Infinity }}
@@ -237,15 +221,18 @@ export function Projects() {
                     src={project.image}
                     alt={project.title}
                     className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    referrerPolicy="no-referrer"
                     whileHover={{ scale: 1.15, rotate: 2 }}
                     transition={{ duration: 0.6 }}
                   />
-                  <motion.div 
+                  <motion.div
                     className={`absolute inset-0 bg-gradient-to-t ${project.gradient} opacity-40`}
                     whileHover={{ opacity: 0.7 }}
                     transition={{ duration: 0.3 }}
                   />
-                  
+
                   {/* Animated light sweep */}
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0"
@@ -255,12 +242,12 @@ export function Projects() {
                     }}
                     transition={{ duration: 1.5 }}
                   />
-                  
+
                   {/* Floating star icon */}
                   <motion.div
                     initial={{ opacity: 0, scale: 0, rotate: -180 }}
-                    animate={{ 
-                      opacity: hoveredIndex === index ? 1 : 0, 
+                    animate={{
+                      opacity: hoveredIndex === index ? 1 : 0,
                       scale: hoveredIndex === index ? 1 : 0,
                       rotate: hoveredIndex === index ? 0 : -180,
                     }}
@@ -284,7 +271,7 @@ export function Projects() {
 
                 {/* Content */}
                 <div className="p-6 flex flex-col flex-grow">
-                  <motion.h3 
+                  <motion.h3
                     className="text-2xl font-bold mb-3 text-white"
                     whileHover={{
                       scale: 1.05,
@@ -302,8 +289,8 @@ export function Projects() {
                       {project.title}
                     </motion.span>
                   </motion.h3>
-                  
-                  <motion.p 
+
+                  <motion.p
                     className="text-gray-400 mb-4 text-sm leading-relaxed line-clamp-3 flex-grow"
                     animate={{
                       color: hoveredIndex === index ? '#e5e7eb' : '#9ca3af',
@@ -320,8 +307,8 @@ export function Projects() {
                         initial={{ opacity: 0, scale: 0.8, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         transition={{ delay: 0.1 * tagIndex }}
-                        whileHover={{ 
-                          scale: 1.15, 
+                        whileHover={{
+                          scale: 1.15,
                           rotate: [0, -5, 5, 0],
                           boxShadow: "0 5px 15px rgba(168, 85, 247, 0.4)",
                         }}
@@ -353,8 +340,8 @@ export function Projects() {
                       href={project.link.includes('github') ? project.link : 'https://github.com/Surya-Chinnathambi'}
                       target="_blank"
                       rel="noopener noreferrer"
-                      whileHover={{ 
-                        scale: 1.1, 
+                      whileHover={{
+                        scale: 1.1,
                         rotate: 360,
                         backgroundColor: '#4c1d95',
                       }}

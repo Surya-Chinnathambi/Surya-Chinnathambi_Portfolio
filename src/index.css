@@ -20,22 +20,27 @@
 .swiper-slide-shadow-right {
   border-radius: 18px;
 }
+
 @keyframes spin-slower {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
-.animate-spin-slower {
-  animation: spin-slower 25s linear infinite;
-}
-@keyframes spin-slower {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+
 .animate-spin-slower {
   animation: spin-slower 20s linear infinite;
 }
 
-/* Hide the default system cursor */
-body, a, button {
-  cursor: none;
+/* Hide system cursor only for precise pointers (desktop/mouse). */
+@media (pointer: fine) {
+
+  body,
+  a,
+  button {
+    cursor: none;
+  }
 }

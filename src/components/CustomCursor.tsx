@@ -7,17 +7,25 @@ export function CustomCursor() {
   const [isClicking, setIsClicking] = useState(false);
 
   useEffect(() => {
-    const updateMousePosition = (e) => {
+    if (window.matchMedia('(pointer: coarse)').matches) {
+      return;
+    }
+
+    const updateMousePosition = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
-    const handleMouseOver = (e) => {
-      const target = e.target;
-      const isInteractive = 
-        target.tagName === 'A' || 
+    const handleMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (!target) {
+        return;
+      }
+
+      const isInteractive =
+        target.tagName === 'A' ||
         target.tagName === 'BUTTON' ||
         window.getComputedStyle(target).cursor === 'pointer';
-      
+
       setIsHovering(isInteractive);
     };
 
@@ -82,7 +90,7 @@ export function CustomCursor() {
           </filter>
         </defs>
       </svg>
-      
+
       {/* The main cursor element container with the filter applied */}
       <div style={{ filter: 'url(#gooey)', pointerEvents: 'none', position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 9999 }}>
         {/* Outer Follower (creates the trail) */}

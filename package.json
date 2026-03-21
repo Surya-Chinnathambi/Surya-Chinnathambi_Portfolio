@@ -13,11 +13,7 @@
     "framer-motion": "^11.0.8",
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-parallax-tilt": "^1.7.212",
-    "react-tsparticles": "^2.10.0",
-    "swiper": "^11.0.6",
-    "tsparticles-engine": "^2.11.0"
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",
