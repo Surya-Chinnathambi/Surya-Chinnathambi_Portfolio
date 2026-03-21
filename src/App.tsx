@@ -5,8 +5,6 @@ import { Home } from './components/Home';
 const About = lazy(() => import('./components/About').then((m) => ({ default: m.About })));
 const Projects = lazy(() => import('./components/Projects').then((m) => ({ default: m.Projects })));
 const Contact = lazy(() => import('./components/Contact').then((m) => ({ default: m.Contact })));
-const CustomCursor = lazy(() => import('./components/CustomCursor').then((m) => ({ default: m.CustomCursor })));
-const ParticleNetwork = lazy(() => import('./components/ParticleNetwork').then((m) => ({ default: m.ParticleNetwork })));
 
 const seoBySection: Record<string, { title: string; description: string }> = {
   home: {
@@ -45,27 +43,12 @@ const ensureMetaTag = (name: 'description' | 'robots') => {
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
-  const [enableHeavyEffects, setEnableHeavyEffects] = useState(true);
 
   useEffect(() => {
     document.documentElement.style.scrollBehavior = 'smooth';
 
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-    const updateEffectsFlag = () => {
-      const isSmallViewport = window.innerWidth < 1024;
-      setEnableHeavyEffects(!mediaQuery.matches && !isSmallViewport);
-    };
-
-    updateEffectsFlag();
-
-    window.addEventListener('resize', updateEffectsFlag);
-    mediaQuery.addEventListener('change', updateEffectsFlag);
-
     return () => {
       document.documentElement.style.scrollBehavior = '';
-      window.removeEventListener('resize', updateEffectsFlag);
-      mediaQuery.removeEventListener('change', updateEffectsFlag);
     };
   }, []);
 
@@ -81,25 +64,19 @@ function App() {
   }, [activeSection]);
 
   return (
-    <div className="min-h-screen bg-[#0f172a] text-white relative overflow-x-hidden">
-      <Suspense fallback={null}>
-        {enableHeavyEffects && <CustomCursor />}
-        {enableHeavyEffects && <ParticleNetwork />}
-      </Suspense>
-
-      {/* Wrapper with higher z-index for content */}
+    <div className="min-h-screen relative overflow-x-hidden">
       <div className="relative z-10">
         <Navigation activeSection={activeSection} setActiveSection={setActiveSection} />
         <main>
-          {activeSection === 'home' && <Home />}
-          <Suspense fallback={<div className="container mx-auto px-4 py-20 text-center text-gray-400">Loading section...</div>}>
+          {activeSection === 'home' && <Home setActiveSection={setActiveSection} />}
+          <Suspense fallback={<div className="container mx-auto px-4 py-20 text-center text-[var(--muted)]">Loading section...</div>}>
             {activeSection === 'about' && <About />}
             {activeSection === 'projects' && <Projects />}
             {activeSection === 'contact' && <Contact />}
           </Suspense>
         </main>
-        <footer className="text-center py-8 text-gray-400">
-          <p>© 2024 Surya C. All rights reserved.</p>
+        <footer className="text-center py-8 text-sm text-[var(--muted)] border-t border-[var(--line)] mt-8">
+          <p>© 2026 Surya Chinnathambi. Designed with intention.</p>
         </footer>
       </div>
     </div>

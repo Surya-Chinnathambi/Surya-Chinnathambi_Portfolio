@@ -34,64 +34,49 @@ export function Navigation({
 
   return (
     <motion.nav
-      initial={{ y: -100 }}
+      initial={{ y: -56, opacity: 0 }}
       animate={{ y: 0 }}
-      transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled 
-          ? 'backdrop-blur-md bg-[#1e293b]/90 shadow-xl shadow-purple-500/10' 
-          : 'backdrop-blur-sm bg-[#1e293b]/60'
-      } py-4 px-4`}
+      transition={{ duration: 0.45, ease: 'easeOut' }}
+      className={`sticky top-0 z-50 transition-all duration-300 border-b ${scrolled
+          ? 'backdrop-blur-xl bg-[var(--surface-strong)]/90 border-[var(--line-strong)] shadow-[0_10px_30px_rgba(0,0,0,0.28)]'
+          : 'backdrop-blur-sm bg-[var(--surface)]/65 border-[var(--line)]'
+        } py-4 px-4 md:px-6`}
     >
       <div className="container mx-auto flex justify-between items-center">
-        <motion.h1 
-          className="text-white text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-600 text-transparent bg-clip-text"
-          whileHover={{ scale: 1.05 }}
-        >
-          Surya
-        </motion.h1>
+        <button onClick={() => handleClick('home')} className="text-left">
+          <p className="text-xs uppercase tracking-[0.24em] text-[var(--muted)]">Portfolio</p>
+          <h1 className="text-xl md:text-2xl font-semibold text-[var(--text)]">Surya C</h1>
+        </button>
 
-        {/* Desktop Navigation */}
-        <ul className="hidden md:flex space-x-8 relative">
+        <ul className="hidden md:flex items-center gap-2 p-1 rounded-full bg-[var(--surface)] border border-[var(--line)]">
           {navItems.map(({ name, icon: Icon }) => (
-            <motion.li key={name} className="group relative">
+            <li key={name} className="relative">
               <button
                 onClick={() => handleClick(name)}
-                className={`flex items-center gap-2 text-lg transition-all ${
-                  activeSection === name.toLowerCase()
-                    ? 'text-white font-semibold'
-                    : 'text-gray-400 group-hover:text-white'
-                }`}
+                className={`relative z-10 flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-colors ${activeSection === name.toLowerCase()
+                    ? 'text-[var(--text)]'
+                    : 'text-[var(--muted)] hover:text-[var(--text)]'
+                  }`}
               >
-                <motion.div
-                  whileHover={{ rotate: 15, scale: 1.1 }}
-                  transition={{ type: 'spring', stiffness: 300 }}
-                >
-                  <Icon size={18} />
-                </motion.div>
+                <Icon size={16} />
                 {name}
               </button>
-              
-              {/* Animated underline */}
+
               {activeSection === name.toLowerCase() && (
                 <motion.div
-                  layoutId="underline"
-                  className="absolute left-0 -bottom-1 h-[2px] w-full rounded-full bg-gradient-to-r from-purple-400 to-pink-600"
-                  transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                  layoutId="active-pill"
+                  className="absolute inset-0 rounded-full bg-[var(--brand)]/20 border border-[var(--brand)]/40"
+                  transition={{ type: 'spring', stiffness: 350, damping: 28 }}
                 />
               )}
-              
-              {/* Hover underline */}
-              <div className="absolute left-0 -bottom-1 h-[2px] w-0 group-hover:w-full transition-all duration-300 bg-gray-400 rounded-full" />
-            </motion.li>
+            </li>
           ))}
         </ul>
 
-        {/* Mobile Menu Toggle */}
         <div className="md:hidden">
-          <motion.button 
-            onClick={() => setMenuOpen(!menuOpen)} 
-            className="text-white"
+          <motion.button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="text-[var(--text)] p-2 rounded-xl border border-[var(--line)] bg-[var(--surface)]"
             whileTap={{ scale: 0.9 }}
           >
             {menuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -99,33 +84,31 @@ export function Navigation({
         </div>
       </div>
 
-      {/* Mobile Dropdown Menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.ul
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden mt-4 flex flex-col space-y-4 items-center bg-[#1e293b]/95 rounded-xl py-6 backdrop-blur-lg"
+            transition={{ duration: 0.25 }}
+            className="md:hidden mt-3 p-3 space-y-2 rounded-2xl border border-[var(--line)] bg-[var(--surface-strong)]/95 backdrop-blur-xl"
           >
             {navItems.map(({ name, icon: Icon }) => (
-              <motion.li 
-                key={name} 
+              <motion.li
+                key={name}
                 whileTap={{ scale: 0.95 }}
-                initial={{ x: -20, opacity: 0 }}
+                initial={{ x: -12, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
-                transition={{ delay: 0.1 }}
+                transition={{ delay: 0.04 }}
               >
                 <button
                   onClick={() => handleClick(name)}
-                  className={`flex items-center gap-3 text-lg ${
-                    activeSection === name.toLowerCase()
-                      ? 'text-white font-semibold'
-                      : 'text-gray-300 hover:text-white'
-                  }`}
+                  className={`w-full flex items-center justify-center gap-3 text-sm px-4 py-3 rounded-xl ${activeSection === name.toLowerCase()
+                      ? 'text-[var(--text)] bg-[var(--brand)]/20 border border-[var(--brand)]/30'
+                      : 'text-[var(--muted)] hover:text-[var(--text)] hover:bg-white/5'
+                    }`}
                 >
-                  <Icon size={20} />
+                  <Icon size={18} />
                   {name}
                 </button>
               </motion.li>

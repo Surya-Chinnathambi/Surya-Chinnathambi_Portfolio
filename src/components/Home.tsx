@@ -1,316 +1,121 @@
-import React, { useState, useEffect } from 'react';
-import { Github, Linkedin, Mail, MapPin, Phone, Code, Shield, Globe } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ArrowDown, ArrowUpRight, Github, Linkedin, Mail, Sparkles } from 'lucide-react';
 
-const highlights = [
-  "Cybersecurity Enthusiast",
-  "Penetration Tester",
-  "Web Developer",
-  "Ethical Hacker"
+const stats = [
+  { label: 'Projects Built', value: '15+' },
+  { label: 'Core Stack', value: 'React + Node' },
+  { label: 'Focus', value: 'AI and UX' },
 ];
 
-export function Home() {
-  const [currentHighlight, setCurrentHighlight] = useState(0);
+const socialLinks = [
+  { icon: Github, href: 'https://github.com/yourprofile', label: 'GitHub' },
+  { icon: Linkedin, href: 'https://linkedin.com/in/yourprofile', label: 'LinkedIn' },
+  { icon: Mail, href: 'mailto:your.email@example.com', label: 'Email' },
+];
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentHighlight((prev) => (prev + 1) % highlights.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-
+export function Home({ setActiveSection }: { setActiveSection: (section: string) => void }) {
   return (
-    <div className="relative overflow-hidden min-h-screen text-white"
-      style={{ background: 'transparent' }}
-    >
-
-      <div className="container mx-auto px-4 py-20 flex items-center justify-center">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Text Content */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-left backdrop-blur-md bg-white/5 p-8 rounded-3xl border border-white/10 shadow-2xl"
-            >
-              <motion.h2
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2 }}
-                className="text-2xl font-medium text-gray-400 mb-2"
-              >
-                Welcome, I'm
-              </motion.h2>
-
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                whileHover={{ scale: 1.05 }}
-                className="text-6xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-transparent bg-clip-text cursor-pointer"
-              >
-                Surya C
-              </motion.h1>
-
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
-                className="h-16 mb-6"
-              >
-                <AnimatePresence mode="wait">
-                  <motion.p
-                    key={currentHighlight}
-                    initial={{ opacity: 0, y: 20, rotateX: -90 }}
-                    animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                    exit={{ opacity: 0, y: -20, rotateX: 90 }}
-                    transition={{ duration: 0.5 }}
-                    className="text-2xl text-gray-300 font-light"
-                  >
-                    {highlights[currentHighlight]}
-                  </motion.p>
-                </AnimatePresence>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-                whileHover={{ x: 5 }}
-                className="flex items-center gap-2 text-gray-400 mb-8 cursor-pointer"
-              >
-                <motion.div
-                  animate={{
-                    y: [0, -5, 0],
-                  }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                >
-                  <MapPin size={20} className="text-purple-400" />
-                </motion.div>
-                <span>Kallakurichi, Tamil Nadu</span>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.6 }}
-                className="space-y-4 mb-8"
-              >
-                <motion.div
-                  whileHover={{ x: 10, scale: 1.05 }}
-                  className="flex items-center gap-3 text-gray-400 cursor-pointer group"
-                >
-                  <motion.div
-                    whileHover={{ rotate: [0, -10, 10, -10, 0] }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <Phone size={20} className="text-green-400 group-hover:text-green-300" />
-                  </motion.div>
-                  <span className="group-hover:text-white transition-colors">(+91) 8870752656</span>
-                </motion.div>
-
-                <motion.div
-                  whileHover={{ x: 10, scale: 1.05 }}
-                  className="flex items-center gap-3 text-gray-400 cursor-pointer group"
-                >
-                  <motion.div
-                    whileHover={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <Mail size={20} className="text-blue-400 group-hover:text-blue-300" />
-                  </motion.div>
-                  <span className="group-hover:text-white transition-colors">suryag.chinnathambi@gmail.com</span>
-                </motion.div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.7 }}
-                className="flex gap-6"
-              >
-                {[
-                  { icon: Github, href: "https://github.com/Suryzz", color: "hover:text-purple-400", rotate: 360 },
-                  { icon: Linkedin, href: "http://www.linkedin.com/in/surya-c-a4627725a/", color: "hover:text-blue-400", rotate: -360 },
-                  { icon: Mail, href: "mailto:suryag.chinnathambi@gmail.com", color: "hover:text-pink-400", rotate: 360 }
-                ].map((social, index) => (
-                  <motion.a
-                    key={index}
-                    whileHover={{
-                      scale: 1.3,
-                      rotate: social.rotate,
-                      boxShadow: "0 0 20px rgba(168, 85, 247, 0.6)"
-                    }}
-                    whileTap={{ scale: 0.9 }}
-                    animate={{
-                      y: [0, -10, 0],
-                    }}
-                    transition={{
-                      y: {
-                        duration: 2 + index * 0.3,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      }
-                    }}
-                    href={social.href}
-                    className={`${social.color} transition-colors text-gray-400 relative`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <social.icon size={32} />
-                  </motion.a>
-                ))}
-              </motion.div>
-            </motion.div>
-
-            {/* Profile Image */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="relative backdrop-blur-md bg-white/5 p-8 rounded-3xl border border-white/10 shadow-2xl"
-            >
-              <motion.div
-                animate={{
-                  boxShadow: [
-                    '0 0 60px rgba(168, 85, 247, 0.4)',
-                    '0 0 80px rgba(236, 72, 153, 0.6)',
-                    '0 0 60px rgba(168, 85, 247, 0.4)',
-                  ],
-                  rotate: [0, 2, -2, 0],
-                }}
-                transition={{
-                  boxShadow: { duration: 3, repeat: Infinity },
-                  rotate: { duration: 5, repeat: Infinity, ease: "easeInOut" }
-                }}
-                whileHover={{ scale: 1.05, rotate: 0 }}
-                className="relative rounded-2xl overflow-hidden cursor-pointer"
-              >
-                <motion.div
-                  animate={{
-                    background: [
-                      'linear-gradient(45deg, #8b5cf6, #ec4899, #3b82f6)',
-                      'linear-gradient(90deg, #ec4899, #3b82f6, #8b5cf6)',
-                      'linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899)',
-                      'linear-gradient(45deg, #8b5cf6, #ec4899, #3b82f6)',
-                    ]
-                  }}
-                  transition={{ duration: 4, repeat: Infinity }}
-                  className="w-full aspect-square p-1 rounded-2xl"
-                >
-                  <div className="w-full h-full bg-gray-800 rounded-xl flex items-center justify-center overflow-hidden">
-                    <motion.img
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.3 }}
-                      src="/profileimage.jpg"
-                      alt="Surya C Profile"
-                      width={640}
-                      height={640}
-                      loading="eager"
-                      fetchPriority="high"
-                      decoding="async"
-                      className="w-full h-full object-cover rounded-xl"
-                    />
-                  </div>
-                </motion.div>
-              </motion.div>
-
-              {/* Orbiting Particles Around Image */}
-              {[...Array(6)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute w-3 h-3 bg-purple-400 rounded-full"
-                  style={{
-                    top: '50%',
-                    left: '50%',
-                  }}
-                  animate={{
-                    x: [0, Math.cos((i * Math.PI * 2) / 6) * 200, 0],
-                    y: [0, Math.sin((i * Math.PI * 2) / 6) * 200, 0],
-                    scale: [1, 1.5, 1],
-                    opacity: [0.5, 1, 0.5],
-                  }}
-                  transition={{
-                    duration: 5,
-                    repeat: Infinity,
-                    delay: i * 0.3,
-                    ease: "linear"
-                  }}
-                />
-              ))}
-            </motion.div>
+    <section className="min-h-screen flex items-center px-4 py-28 md:py-20">
+      <div className="w-full max-w-6xl mx-auto grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, ease: 'easeOut' }}
+          className="space-y-8"
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[var(--line)] bg-[var(--surface)] text-xs uppercase tracking-[0.14em] text-[var(--muted)]">
+            <Sparkles size={14} className="text-[var(--brand)]" />
+            Open to Full-Stack Roles
           </div>
 
-          {/* Featured Skills */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9 }}
-            className="mt-24 backdrop-blur-md bg-white/5 p-12 rounded-3xl border border-white/10 shadow-2xl"
-          >
-            <motion.h2
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.9 }}
-              className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-emerald-400 to-cyan-500 text-transparent bg-clip-text"
+          <div className="space-y-4">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-semibold leading-tight text-[var(--text)]">
+              Building thoughtful digital products that feel fast and human.
+            </h2>
+            <p className="text-base md:text-lg max-w-xl text-[var(--muted)] leading-relaxed">
+              I am Surya Chinnathambi, a developer focused on React, Node.js, and practical AI integrations. I design interfaces and systems that are clear, performant, and easy to scale.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap gap-3">
+            {socialLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={link.label}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-[var(--line)] bg-[var(--surface)] text-[var(--text)] hover:border-[var(--brand)]/50 transition-colors"
+              >
+                <link.icon size={16} />
+                <span className="text-sm">{link.label}</span>
+                <ArrowUpRight size={14} className="text-[var(--muted)]" />
+              </a>
+            ))}
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4">
+            <motion.button
+              onClick={() => setActiveSection('projects')}
+              className="px-7 py-3 rounded-xl bg-[var(--brand)] text-[var(--bg)] font-semibold shadow-[0_10px_30px_rgba(255,110,64,0.28)]"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
             >
-              Featured Skills
-            </motion.h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[
-                { title: "Penetration Testing", glow: "from-purple-500 to-pink-500", icon: Shield, description: "Identifying vulnerabilities and securing systems." },
-                { title: "Ethical Hacking", glow: "from-blue-500 to-cyan-500", icon: Code, description: "Simulating attacks to find and fix security flaws." },
-                { title: "Web Development", glow: "from-orange-500 to-red-500", icon: Globe, description: "Building responsive and scalable web applications." }
-              ].map((skill, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20, rotateY: -90 }}
-                  animate={{ opacity: 1, y: 0, rotateY: 0 }}
-                  transition={{ delay: 1 + index * 0.1, duration: 0.5 }}
-                  whileHover={{
-                    scale: 1.08,
-                    boxShadow: "0 30px 60px rgba(0, 0, 0, 0.5)",
-                    y: -15,
-                    rotateY: 5,
-                  }}
-                  className={`p-8 rounded-2xl bg-gradient-to-br ${skill.glow} text-white text-center shadow-2xl cursor-pointer transform transition-all duration-300 border border-transparent hover:border-white/30 relative overflow-hidden group`}
-                >
-                  {/* Animated background effect */}
-                  <motion.div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-20"
-                    animate={{
-                      background: [
-                        'radial-gradient(circle at 0% 0%, white 0%, transparent 50%)',
-                        'radial-gradient(circle at 100% 100%, white 0%, transparent 50%)',
-                        'radial-gradient(circle at 0% 100%, white 0%, transparent 50%)',
-                        'radial-gradient(circle at 100% 0%, white 0%, transparent 50%)',
-                      ]
-                    }}
-                    transition={{ duration: 3, repeat: Infinity }}
-                  />
+              Explore Projects
+            </motion.button>
+            <motion.button
+              onClick={() => setActiveSection('contact')}
+              className="px-7 py-3 rounded-xl border border-[var(--line-strong)] text-[var(--text)] bg-[var(--surface)]"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Contact Me
+            </motion.button>
+          </div>
+        </motion.div>
 
-                  <motion.div
-                    whileHover={{ rotate: 360, scale: 1.2 }}
-                    transition={{ duration: 0.6 }}
-                  >
-                    <skill.icon size={48} className="mx-auto mb-4 text-white/90 relative z-10" />
-                  </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, delay: 0.1, ease: 'easeOut' }}
+          className="space-y-5"
+        >
+          <div className="relative overflow-hidden rounded-3xl border border-[var(--line)] bg-[var(--surface-strong)] p-6 md:p-8">
+            <div className="absolute -top-8 -right-10 w-40 h-40 rounded-full bg-[var(--brand)]/18 blur-3xl" />
+            <img
+              src="/profileimage.jpg"
+              alt="Surya"
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
+              className="w-24 h-24 rounded-2xl object-cover border border-[var(--line-strong)]"
+            />
+            <h3 className="mt-5 text-2xl font-semibold text-[var(--text)]">Full-Stack Engineer</h3>
+            <p className="mt-2 text-sm text-[var(--muted)] leading-relaxed">
+              Blending product thinking with engineering execution to ship reliable web experiences.
+            </p>
+          </div>
 
-                  <h3 className="text-2xl font-bold mb-2 relative z-10">{skill.title}</h3>
-                  <motion.p
-                    initial={{ opacity: 0.7 }}
-                    whileHover={{ opacity: 1 }}
-                    className="text-lg text-white/80 relative z-10"
-                  >
-                    {skill.description}
-                  </motion.p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
+          <div className="grid sm:grid-cols-3 gap-3">
+            {stats.map((item) => (
+              <div key={item.label} className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-4">
+                <p className="text-2xl font-semibold text-[var(--text)]">{item.value}</p>
+                <p className="text-xs uppercase tracking-[0.12em] text-[var(--muted)] mt-1">{item.label}</p>
+              </div>
+            ))}
+          </div>
+        </motion.div>
       </div>
-    </div>
+
+      <motion.button
+        onClick={() => setActiveSection('about')}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[var(--muted)] hover:text-[var(--text)] transition-colors"
+        animate={{ y: [0, 8, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
+      >
+        <ArrowDown size={28} />
+      </motion.button>
+    </section>
   );
 }
