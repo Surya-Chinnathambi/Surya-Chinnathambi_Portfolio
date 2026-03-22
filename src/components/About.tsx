@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Award, Brain, Briefcase, Code, ExternalLink, FileText, Shield } from 'lucide-react';
+import { FileText, ExternalLink, Award, Code, Shield, Brain, Briefcase, Activity } from 'lucide-react'; // Added Activity icon
 
+// --- Import your certificate PDFs ---
 import aiEssentialsPdf from '../aset/aiessentials.pdf';
 import courseraCybersecurityPdf from '../aset/coursera.pdf';
 import ecCouncilPdf from '../aset/eccouncil.pdf';
@@ -9,149 +10,304 @@ import ciscoPdf from '../aset/cisco.pdf';
 import dliPdf from '../aset/dli.pdf';
 import jetsonNanoPdf from '../aset/nano.pdf';
 
-const technologies = [
-  'Kali Linux',
-  'Nmap',
-  'Metasploit',
-  'Wireshark',
-  'Burp Suite',
-  'TCP/IP',
-  'React',
-  'JavaScript',
-  'Java',
-  'Spring Boot',
-  'MySQL',
-  'Git',
-];
 
-const highlights = [
-  'Completed 95+ rooms on TryHackMe to practice real-world cybersecurity labs.',
-  'Built and tested multiple cybersecurity tools in personal and academic projects.',
-  'Regularly practice with Capture the Flag challenges to sharpen offensive and defensive skills.',
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 }
+};
+
+const techColors = {
+  'Kali Linux': 'bg-blue-500',
+  'Nmap': 'bg-green-500',
+  'Metasploit': 'bg-red-500',
+  'Wireshark': 'bg-purple-500',
+  'Burp Suite': 'bg-yellow-500',
+  'TCP/IP': 'bg-indigo-500',
+  'Firewalls': 'bg-pink-500',
+  'Java': 'bg-orange-500',
+  'JavaScript': 'bg-yellow-400',
+  'React': 'bg-cyan-500',
+  'Spring Boot': 'bg-green-400',
+  'MySQL': 'bg-blue-400',
+  'Git': 'bg-red-400',
+};
+
+const experiences = [
+  {
+    company: "CyberSecurity-Nxxt",
+    location: "Coimbatore",
+    role: "CyberSecurity Intern",
+    duration: "July 2025 - Jan 2026"
+  }
 ];
 
 const certificates = [
-  { name: 'Google AI Essentials', issuer: 'Coursera', date: '2023', icon: Brain, link: aiEssentialsPdf },
-  { name: 'Foundations of Cybersecurity', issuer: 'Coursera', date: '2023', icon: Shield, link: courseraCybersecurityPdf },
-  { name: 'Ethical Hacking Essentials', issuer: 'EC-Council', date: '2023', icon: Code, link: ecCouncilPdf },
-  { name: 'Introduction to Cybersecurity', issuer: 'Cisco Networking Academy', date: '2023', icon: Shield, link: ciscoPdf },
-  { name: 'Fundamentals of Deep Learning', issuer: 'NVIDIA DLI', date: '2023', icon: Brain, link: dliPdf },
-  { name: 'Getting Started with AI on Jetson Nano', issuer: 'NVIDIA DLI', date: '2023', icon: Brain, link: jetsonNanoPdf },
+  {
+    name: "Google AI Essentials",
+    issuer: "Coursera",
+    date: "2023",
+    icon: Brain,
+    link: aiEssentialsPdf
+  },
+  {
+    name: "Foundations of Cybersecurity",
+    issuer: "Coursera",
+    date: "2023",
+    icon: Shield,
+    link: courseraCybersecurityPdf
+  },
+  {
+    name: "Ethical Hacking Essentials",
+    issuer: "EC-Council",
+    date: "2023",
+    icon: Code,
+    link: ecCouncilPdf
+  },
+  {
+    name: "Introduction to Cybersecurity",
+    issuer: "Cisco Networking Academy",
+    date: "2023",
+    icon: Shield,
+    link: ciscoPdf
+  },
+  {
+    name: "Fundamentals of Deep Learning",
+    issuer: "NVIDIA DLI",
+    date: "2023",
+    icon: Brain,
+    link: dliPdf
+  },
+  {
+    name: "Getting Started with AI on Jetson Nano",
+    issuer: "NVIDIA DLI",
+    date: "2023",
+    icon: Brain,
+    link: jetsonNanoPdf
+  }
 ];
 
 export function About() {
   return (
-    <section className="container mx-auto px-4 py-24">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="text-center max-w-3xl mx-auto"
+    <motion.div 
+      initial="hidden"
+      animate="show"
+      variants={container}
+      className="container mx-auto px-4 py-20"
+    >
+      <motion.h2 
+        variants={item} 
+        className="text-5xl font-bold text-center mb-4 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-transparent bg-clip-text"
       >
-        <p className="text-xs uppercase tracking-[0.16em] text-[var(--brand)] mb-3">About</p>
-        <h2 className="text-4xl md:text-5xl font-semibold text-[var(--text)]">Security-first developer with product instincts.</h2>
-        <p className="text-[var(--muted)] mt-4 leading-relaxed">
-          I combine secure engineering practices with frontend craftsmanship to build products that are dependable, intuitive, and fast.
-        </p>
-      </motion.div>
+        About Me
+      </motion.h2>
+      
+      <motion.p
+        variants={item}
+        className="text-center text-gray-400 mb-12 max-w-2xl mx-auto"
+      >
+        Passionate cybersecurity professional with expertise in penetration testing and secure development
+      </motion.p>
 
-      <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-6 mt-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="rounded-3xl border border-[var(--line)] bg-[var(--surface)] p-6 md:p-8"
+      <div className="max-w-4xl mx-auto">
+        <motion.div 
+          variants={item} 
+          className="bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-2xl p-8 shadow-2xl border border-purple-500/20"
         >
-          <h3 className="text-2xl font-semibold text-[var(--text)] mb-4">Cybersecurity Engagement</h3>
-          <ul className="space-y-3 text-[var(--muted)] leading-relaxed">
-            {highlights.map((line) => (
-              <li key={line} className="flex gap-2">
-                <span className="text-[var(--brand)]">•</span>
-                <span>{line}</span>
-              </li>
-            ))}
-          </ul>
+          <motion.p variants={item} className="text-gray-300 mb-8 leading-relaxed text-lg">
+            A passionate and motivated cybersecurity enthusiast with a strong foundation in networking, programming,
+            and security principles. Demonstrated hands-on experience with tools like Kali Linux, Nmap, Metasploit, and
+            Wireshark, alongside a solid understanding of penetration testing, ethical hacking, and network defense
+            mechanisms.
+          </motion.p>
 
-          <a
-            href="https://tryhackme.com/p/SuryaChinnathambi"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex mt-5 items-center gap-2 text-sm text-[var(--brand)] hover:text-[var(--brand-strong)] transition-colors"
-          >
-            TryHackMe Profile
-            <ExternalLink size={14} />
-          </a>
+          <div className="space-y-10">
 
-          <div className="mt-8">
-            <h4 className="text-lg font-semibold text-[var(--text)] mb-3">Technologies</h4>
-            <div className="flex flex-wrap gap-2">
-              {technologies.map((tech) => (
-                <span key={tech} className="px-3 py-1.5 rounded-full border border-[var(--line)] text-sm text-[var(--text)] bg-white/5">
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.08 }}
-          className="space-y-4"
-        >
-          <div className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-5">
-            <div className="flex items-center gap-2 mb-2">
-              <Award size={18} className="text-[var(--brand)]" />
-              <h4 className="text-lg font-semibold text-[var(--text)]">Education</h4>
-            </div>
-            <p className="text-[var(--text)]">Sri Ramakrishna Engineering College</p>
-            <p className="text-sm text-[var(--muted)]">M.Tech CSE (5-Year Integrated) • CGPA 7.96</p>
-          </div>
-
-          <div className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-5">
-            <div className="flex items-center gap-2 mb-2">
-              <Briefcase size={18} className="text-[var(--brand)]" />
-              <h4 className="text-lg font-semibold text-[var(--text)]">Experience</h4>
-            </div>
-            <p className="text-[var(--text)]">CyberSecurity-Nxxt, Coimbatore</p>
-            <p className="text-sm text-[var(--muted)]">CyberSecurity Intern • July 2025 - Jan 2026</p>
-          </div>
-
-          <div className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-5">
-            <div className="flex items-center gap-2 mb-3">
-              <FileText size={18} className="text-[var(--brand)]" />
-              <h4 className="text-lg font-semibold text-[var(--text)]">Certifications</h4>
-            </div>
-            <div className="space-y-2">
-              {certificates.map((cert) => {
-                const Icon = cert.icon;
-                return (
-                  <a
-                    key={cert.name}
-                    href={cert.link}
-                    target="_blank"
+            {/* START: New Cybersecurity Engagement Section */}
+            <motion.div variants={item}>
+              <div className="flex items-center gap-3 mb-4">
+                <Activity className="text-cyan-400" size={28} />
+                <h3 className="text-2xl font-semibold">Cybersecurity Engagement</h3>
+              </div>
+              <ul className="space-y-3 text-gray-300 list-disc list-inside bg-[#0f172a] p-5 rounded-lg border border-cyan-500/10">
+                <li>Completed 95+ rooms on TryHackMe to practice real-world cybersecurity labs.</li>
+                <li>Built and tested multiple cybersecurity tools in personal and academic projects.</li>
+                <li>Continuously learning and practicing cybersecurity skills using Capture the Flag (CTF) platforms.</li>
+                <li>
+                  <a 
+                    href="https://tryhackme.com/p/SuryaChinnathambi" 
+                    target="_blank" 
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between rounded-xl border border-[var(--line)] p-3 hover:border-[var(--brand)]/45 transition-colors"
+                    className="text-cyan-400 hover:underline inline-flex items-center gap-1.5 transition-colors"
                   >
-                    <div className="flex items-center gap-2 min-w-0">
-                      <Icon size={16} className="text-[var(--brand)] shrink-0" />
-                      <div className="min-w-0">
-                        <p className="text-sm text-[var(--text)] truncate">{cert.name}</p>
-                        <p className="text-xs text-[var(--muted)]">{cert.issuer} • {cert.date}</p>
-                      </div>
-                    </div>
-                    <ExternalLink size={14} className="text-[var(--muted)] shrink-0" />
+                    CTF Practice - TryHackMe <ExternalLink size={14} />
                   </a>
-                );
-              })}
-            </div>
+                </li>
+              </ul>
+            </motion.div>
+            {/* END: New Section */}
+
+            {/* Technologies */}
+            <motion.div variants={item}>
+              <div className="flex items-center gap-3 mb-4">
+                <Code className="text-purple-400" size={28} />
+                <h3 className="text-2xl font-semibold">Technologies</h3>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                {Object.entries(techColors).map(([tech, color], index) => (
+                  <motion.span
+                    key={tech}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: index * 0.05 }}
+                    className={`${color} px-4 py-2 rounded-full text-white text-sm font-medium shadow-lg cursor-pointer`}
+                    whileHover={{ scale: 1.15, rotate: 5 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {tech}
+                  </motion.span>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* ... other sections ... */}
+            {/* Skills */}
+            <motion.div variants={item}>
+              <div className="flex items-center gap-3 mb-4">
+                <Shield className="text-blue-400" size={28} />
+                <h3 className="text-2xl font-semibold">Skills</h3>
+              </div>
+              <div className="grid md:grid-cols-2 gap-4">
+                {[
+                  { title: "Security & Networking", skills: "Kali Linux, Nmap, Metasploit, Wireshark, Burp Suite, TCP/IP, Firewalls" },
+                  { title: "Programming & Scripting", skills: "C, Python, JavaScript, Bash" },
+                  { title: "Backend & DB", skills: "PHP, MongoDB, MySQL" },
+                  { title: "Frontend", skills: "HTML, CSS, JavaScript, React" }
+                ].map((category, index) => (
+                  <motion.div
+                    key={index}
+                    whileHover={{ scale: 1.02, x: 5 }}
+                    className="bg-[#0f172a] p-4 rounded-lg border border-purple-500/10"
+                  >
+                    <p className="font-medium text-purple-400 mb-2">{category.title}</p>
+                    <p className="text-sm text-gray-400">{category.skills}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Education */}
+            <motion.div variants={item}>
+              <div className="flex items-center gap-3 mb-4">
+                <Award className="text-green-400" size={28} />
+                <h3 className="text-2xl font-semibold">Education</h3>
+              </div>
+              <div className="space-y-4">
+                {[
+                  {
+                    school: "Sri Ramakrishna Engineering College",
+                    degree: "M.Tech CSE (5-Year Integrated)",
+                    info: "CGPA: 7.96 (Expected 2025)"
+                  },
+                  {
+                    school: "Government Higher Secondary School, Kallakurichi",
+                    degree: "12th Standard",
+                    info: "Completed May 2022"
+                  }
+                ].map((edu, index) => (
+                  <motion.div
+                    key={index}
+                    whileHover={{ scale: 1.02, x: 5 }}
+                    className="bg-[#0f172a] p-5 rounded-lg border border-green-500/10"
+                  >
+                    <h4 className="font-medium text-lg text-white">{edu.school}</h4>
+                    <p className="text-gray-400">{edu.degree}</p>
+                    <p className="text-sm text-green-400 mt-1">{edu.info}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+            
+            {/* Experience */}
+            <motion.div variants={item}>
+              <div className="flex items-center gap-3 mb-4">
+                <Briefcase className="text-orange-400" size={28} />
+                <h3 className="text-2xl font-semibold">Experience</h3>
+              </div>
+              <div className="space-y-4">
+                {experiences.map((exp, index) => (
+                  <motion.div
+                    key={index}
+                    whileHover={{ scale: 1.02, x: 5 }}
+                    className="bg-[#0f172a] p-5 rounded-lg border border-orange-500/10"
+                  >
+                    <h4 className="font-medium text-lg text-white">{exp.role}</h4>
+                    <p className="text-gray-400">{exp.company} - {exp.location}</p>
+                    <p className="text-sm text-orange-400 mt-1">{exp.duration}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Certifications */}
+            <motion.div variants={item}>
+              <div className="flex items-center gap-3 mb-6">
+                <FileText className="text-pink-400" size={28} />
+                <h3 className="text-2xl font-semibold">Certifications</h3>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {certificates.map((cert, index) => {
+                  const Icon = cert.icon;
+                  return (
+                    <a 
+                      href={cert.link} 
+                      key={index} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                    >
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                        whileHover={{ 
+                          scale: 1.05, 
+                          boxShadow: "0 10px 30px rgba(236, 72, 153, 0.3)",
+                          rotate: 2
+                        }}
+                        className="bg-gradient-to-br from-[#0f172a] to-[#1e293b] h-full p-5 rounded-xl border border-pink-500/20 cursor-pointer"
+                      >
+                        <div className="flex items-start gap-3">
+                          <motion.div
+                            whileHover={{ rotate: 360 }}
+                            transition={{ duration: 0.6 }}
+                          >
+                            <Icon className="text-pink-400" size={24} />
+                          </motion.div>
+                          <div className="flex-1">
+                            <h4 className="font-medium text-white mb-1">{cert.name}</h4>
+                            <p className="text-sm text-gray-400">{cert.issuer}</p>
+                            <p className="text-xs text-pink-400 mt-2">{cert.date}</p>
+                          </div>
+                          <ExternalLink size={16} className="text-gray-500" />
+                        </div>
+                      </motion.div>
+                    </a>
+                  );
+                })}
+              </div>
+            </motion.div>
           </div>
         </motion.div>
       </div>
-    </section>
+    </motion.div>
   );
 }

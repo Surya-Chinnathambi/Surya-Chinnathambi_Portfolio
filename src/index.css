@@ -2,46 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --bg: #09151f;
-  --bg-soft: #102231;
-  --surface: #122839cc;
-  --surface-soft: #0e2130cc;
-  --surface-strong: #102636ee;
-  --text: #f4f7fb;
-  --muted: #9fb1bf;
-  --line: #ffffff1f;
-  --line-strong: #ffffff33;
-  --brand: #ff7b4f;
-  --brand-strong: #ff986d;
+.swiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
-* {
-  box-sizing: border-box;
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 300px;
+  height: 300px;
+  border-radius: 18px;
 }
 
-html,
-body,
-#root {
-  min-height: 100%;
+.swiper-slide-shadow-left,
+.swiper-slide-shadow-right {
+  border-radius: 18px;
 }
 
-body {
-  margin: 0;
-  color: var(--text);
-  font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
-  background:
-    radial-gradient(circle at 15% 15%, #27455a66 0%, transparent 42%),
-    radial-gradient(circle at 85% 10%, #803f2f59 0%, transparent 34%),
-    linear-gradient(165deg, var(--bg) 0%, var(--bg-soft) 55%, #09151f 100%);
+@keyframes spin-slower {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.animate-spin-slower {
+  animation: spin-slower 20s linear infinite;
 }
 
-::selection {
-  background: #ff7b4f66;
-  color: #fff;
+/* Hide system cursor only for precise pointers (desktop/mouse). */
+@media (pointer: fine) {
+
+  body,
+  a,
+  button {
+    cursor: none;
+  }
 }
